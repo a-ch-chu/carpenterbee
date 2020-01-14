@@ -5,6 +5,7 @@ package carpenterbee.functionality.waiting
 
 import carpenterbee.functionality.interfaces.HasParent
 import org.openqa.selenium.NotFoundException
+import org.openqa.selenium.TimeoutException
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.FluentWait
 import kotlin.time.Duration
@@ -20,10 +21,16 @@ public object ElementFinder {
             .until { fetch() }!!
 
     public fun waitToFind(element: HasParent<*>): WebElement =
-        waitToFindOrNull(element)
-            ?: throw NotFoundException("Couldn't find ${element::class.simpleName} after ${element.findTimeout}.")
+        try {
+            waitToGet(element.findTimeout) { element.parent.scope.findElement(element.specifier) }
+        } catch (_: TimeoutException) {
+            throw NotFoundException("Couldn't find ${element::class.simpleName} after ${element.findTimeout}.")
+        }
 
     public fun waitToFindOrNull(element: HasParent<*>): WebElement? =
-        waitToGet(element.findTimeout)
-        { element.parent.scope.findElements(element.specifier).firstOrNull() }
+        try {
+            waitToGet(element.findTimeout) { element.parent.scope.findElement(element.specifier) }
+        } catch (_: TimeoutException) {
+            null
+        }
 }
