@@ -10,7 +10,7 @@ public fun <TElement : Element> TElement.verifyThat(verification: TElement.() ->
 
 public fun <TElement : Element> TElement.verifyThat(fact: String, verification: TElement.() -> Boolean): TElement {
     if (!this.verification()) {
-        throw VerificationError("Unable to verify that $fact")
+        throw VerificationError("Unable to verify that $fact.")
     }
     return this
 }

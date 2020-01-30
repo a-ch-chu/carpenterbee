@@ -3,12 +3,11 @@
 
 package carpenterbee.blocks
 
-import carpenterbee.Block
-import carpenterbee.Page
-import carpenterbee.Session
+import carpenterbee.*
 import carpenterbee.functionality.interfaces.HasFindTimeout
-import carpenterbee.functionality.waiting.ElementFinder
+import carpenterbee.functionality.waiting.TagFinder
 import org.openqa.selenium.Alert
+import org.openqa.selenium.NoAlertPresentException
 
 @Suppress("FunctionName") // Factory function
 public fun <TDefaultRoute : Block> AlertDialog(session: Session, route: (Block) -> TDefaultRoute) =
@@ -19,7 +18,15 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
     private val acceptRoute: (Block) -> TAcceptRoute,
     private val dismissRoute: (Block) -> TDismissRoute
 ) : Page(session), HasFindTimeout {
-    public val alert get() = ElementFinder.waitToGet(findTimeout) { session.driver.switchTo().alert() }
+    public val alert: Alert
+        get() = TagFinder.find(this, ::getAlertOrNull)
+
+    public fun getAlertOrNull(): Alert? =
+        try {
+            session.driver.switchTo().alert()
+        } catch (e: NoAlertPresentException) {
+            null
+        }
 
     public fun <TRouteTo> interact(route: (Block) -> TRouteTo, interaction: Alert.() -> Unit): TRouteTo {
         alert.interaction()

@@ -3,31 +3,23 @@
 
 package carpenterbee.sequencers.staleness
 
-import carpenterbee.functionality.waiting.Waiter
+import carpenterbee.functionality.waiting.Wait
 import carpenterbee.sequencers.Sequencer
+import carpenterbee.sequencers.SequencerException
 import org.openqa.selenium.StaleElementReferenceException
-import org.openqa.selenium.TimeoutException
 import org.openqa.selenium.WebElement
 
-public open class AlterSequencer(public val wait: Waiter = Waiter()) :
+public open class AlterSequencer(public val wait: Wait = Wait()) :
     Sequencer {
-    protected lateinit var stored: WebElement
+    protected var stored: WebElement? = null
 
     public override fun preInteract(tag: WebElement) {
         stored = tag
     }
 
     public override fun postInteract(tag: WebElement) {
-        try {
-            wait.until(stored) { stale }
-        } catch (e: UninitializedPropertyAccessException) {
-            throw IllegalStateException(
-                "Attempted to call ${::postInteract.name} function of ${::AlterSequencer.name} " +
-                        "without first calling ${::preInteract.name}", e
-            )
-        } catch (e: TimeoutException) {
-            throw TimeoutException("Timed out waiting for element to change after interaction.", e)
-        }
+        if (!wait.until { stored?.stale != false })
+            throw SequencerException("Timed out waiting for DOM mutations to occur after interaction.")
     }
 
     private val WebElement.stale: Boolean

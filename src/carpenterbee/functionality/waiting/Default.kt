@@ -10,4 +10,5 @@ public object Default {
     public const val timeoutSeconds = 3
     public val timeout: Duration get() = timeoutSeconds.seconds
     public const val pollCount: Int = 10
+    public val interval: Duration get() = timeout / pollCount
 }

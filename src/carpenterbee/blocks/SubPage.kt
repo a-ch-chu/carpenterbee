@@ -10,6 +10,6 @@ import org.openqa.selenium.SearchContext
 public abstract class SubPage(session: Session) : Page(session) {
     public abstract val specifier: By
 
-    public override val scope: SearchContext
-        get() = super.scope.findElement(specifier)
+    public override val scope: SearchContext?
+        get() = super.scope.findOrNull(specifier)
 }

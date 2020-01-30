@@ -4,7 +4,7 @@
 package carpenterbee
 
 import carpenterbee.functionality.interfaces.HasParent
-import carpenterbee.functionality.waiting.ElementFinder
+import carpenterbee.functionality.waiting.TagFinder
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.specifiers.Specifiers
 import org.openqa.selenium.By
@@ -16,7 +16,7 @@ public sealed class Element(val session: Session) {
         session.track(this)
     }
 
-    public abstract val scope: SearchContext
+    public abstract val scope: SearchContext?
 
     public companion object {
         val by get() = Specifiers
@@ -26,7 +26,7 @@ public sealed class Element(val session: Session) {
 public sealed class Block(session: Session) : Element(session)
 
 public abstract class Page(session: Session) : Block(session) {
-    public override val scope: SearchContext
+    public override val scope: SearchContext?
         get() = session.driver.switchTo().defaultContent()
 
     public abstract class Navigator<TThis : Page>(val constructor: (Session) -> TThis) : (Block) -> TThis {
@@ -40,9 +40,9 @@ public abstract class Section<TParent : Block>(
     public override val parent: TParent,
     public override val specifier: By
 ) : Block(parent.session), HasParent<TParent> {
-    public override val scope: SearchContext get() = parent.scope.findElement(specifier)
+    public override val scope: SearchContext? get() = parent.scope.findOrNull(specifier)
 
-    public val tag get() = ElementFinder.waitToFind(this)
+    public val tag get() = TagFinder.find(this)
 }
 
 public abstract class Control<TParent : Block, TDefaultRoute : Block>(
@@ -50,11 +50,11 @@ public abstract class Control<TParent : Block, TDefaultRoute : Block>(
     public override val specifier: By,
     protected val route: (TParent) -> TDefaultRoute
 ) : Element(parent.session), HasParent<TParent> {
-    public override val scope: SearchContext get() = parent.scope.findElement(specifier)
+    public override val scope: SearchContext? get() = parent.scope.findOrNull(specifier)
 
     public var sequencers = listOf<Sequencer>()
 
-    internal val tag get() = ElementFinder.waitToFind(this)
+    internal val tag get() = TagFinder.find(this)
 
     public fun <TRouteTo : Block> interact(
         route: (TParent) -> TRouteTo,
