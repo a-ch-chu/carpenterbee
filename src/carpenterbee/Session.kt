@@ -4,8 +4,9 @@
 package carpenterbee
 
 import org.openqa.selenium.WebDriver
+import java.io.Closeable
 
-public class Session(val driver: WebDriver) {
+public class Session(val driver: WebDriver) : Closeable {
     public constructor(browser: () -> WebDriver) : this(browser())
 
     public var lastPage: Page? = null; private set
@@ -40,4 +41,6 @@ public class Session(val driver: WebDriver) {
         driver.navigate().to(url)
         return constructor(this)
     }
+
+    override fun close(): Unit = driver.quit()
 }

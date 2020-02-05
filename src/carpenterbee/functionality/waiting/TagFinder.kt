@@ -4,8 +4,8 @@
 package carpenterbee.functionality.waiting
 
 import carpenterbee.findOrNull
-import carpenterbee.functionality.interfaces.HasFindTimeout
-import carpenterbee.functionality.interfaces.HasParent
+import carpenterbee.functionality.HasFindTimeout
+import carpenterbee.functionality.HasParent
 import org.openqa.selenium.NotFoundException
 import org.openqa.selenium.WebElement
 
@@ -24,5 +24,8 @@ public object TagFinder {
         findOrNull(element) { element.getOrNull() }
 
     public fun find(element: HasParent<*>): WebElement =
-        find(element) { element.getOrNull() }
+        findOrNull(element)
+            ?: throw NotFoundException(
+                "Couldn't find ${element::class.simpleName} ${element.specifier} after ${element.findTimeout}."
+            )
 }

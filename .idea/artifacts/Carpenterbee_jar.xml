@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact name="Carpenterbee:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Carpenterbee_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Carpenterbee.jar">
+        <element id="module-output" name="Carpenterbee" />
+      </element>
+      <element id="library" level="project" name="org.seleniumhq.selenium:selenium-java:4.0.0-alpha-3" />
+      <element id="library" level="project" name="org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3" />
+      <element id="library" level="project" name="KotlinJavaRuntime" />
+    </root>
+  </artifact>
+</component>

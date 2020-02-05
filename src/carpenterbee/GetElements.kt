@@ -17,7 +17,7 @@ public fun <TElement : Element, TParent : Block> getElements(
     parent: TParent,
     specifier: By,
     wait: StableWait = StableWait()
-) = parent.mapChildren(specifier, wait) { constructor(parent, ByWebElement(it)) }
+): Sequence<TElement> = parent.mapChildren(specifier, wait) { constructor(parent, ByWebElement(it)) }
 
 public fun <TControl : Control<TParent, TDefaultRoute>, TParent : Block, TDefaultRoute : Block> getElements(
     constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TControl,
@@ -25,4 +25,4 @@ public fun <TControl : Control<TParent, TDefaultRoute>, TParent : Block, TDefaul
     specifier: By,
     route: (TParent) -> TDefaultRoute,
     wait: StableWait = StableWait()
-) = parent.mapChildren(specifier, wait) { constructor(parent, ByWebElement(it), route) }
+): Sequence<TControl> = parent.mapChildren(specifier, wait) { constructor(parent, ByWebElement(it), route) }

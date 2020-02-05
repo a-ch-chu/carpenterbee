@@ -3,7 +3,7 @@
 
 package carpenterbee
 
-import carpenterbee.functionality.interfaces.HasParent
+import carpenterbee.functionality.HasParent
 import carpenterbee.functionality.waiting.TagFinder
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.specifiers.Specifiers

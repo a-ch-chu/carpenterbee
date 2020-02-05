@@ -4,7 +4,8 @@
 package carpenterbee.blocks
 
 import carpenterbee.*
-import carpenterbee.functionality.interfaces.HasFindTimeout
+import carpenterbee.controls.traits.HasText
+import carpenterbee.functionality.HasFindTimeout
 import carpenterbee.functionality.waiting.TagFinder
 import org.openqa.selenium.Alert
 import org.openqa.selenium.NoAlertPresentException
@@ -17,7 +18,7 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
     session: Session,
     private val acceptRoute: (Block) -> TAcceptRoute,
     private val dismissRoute: (Block) -> TDismissRoute
-) : Page(session), HasFindTimeout {
+) : Page(session), HasFindTimeout, HasText {
     public val alert: Alert
         get() = TagFinder.find(this, ::getAlertOrNull)
 
@@ -27,6 +28,11 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
         } catch (e: NoAlertPresentException) {
             null
         }
+
+    public val present: Boolean get() = !absent
+    public val absent: Boolean get() = TagFinder.findOrNull(this, ::getAlertOrNull) == null
+
+    public override val text: String get() = alert.text
 
     public fun <TRouteTo> interact(route: (Block) -> TRouteTo, interaction: Alert.() -> Unit): TRouteTo {
         alert.interaction()
@@ -40,6 +46,4 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
     public fun <TRouteTo> dismiss(route: (Block) -> TRouteTo) = interact(route) { dismiss() }
 
     public fun enterText(text: String): AlertDialog<TAcceptRoute, TDismissRoute> = apply { alert.sendKeys(text) }
-
-    public val message: String get() = alert.text
 }
