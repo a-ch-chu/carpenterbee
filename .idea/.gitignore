@@ -1,7 +1,0 @@
-# Default ignored files
-/workspace.xml
-.gradle
-build/
-!gradle-wrapper.jar
-.gradletasknamecache
-.idea/
