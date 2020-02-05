@@ -25,7 +25,7 @@ public class StableWait(
         }
     }
 
-    public fun <T> toGetAsync(
+    public suspend fun <T> toGetAsync(
         sample: () -> T?,
         condition: Iterable<T?>.() -> Boolean = { all { it != null } }
     ): T? =
@@ -41,7 +41,7 @@ public class StableWait(
     ): T? = runBlocking { toGetAsync(sample, condition) }
 
 
-    public fun <T> untilAsync(
+    public suspend fun <T> untilAsync(
         sample: () -> T?,
         condition: Iterable<T?>.() -> Boolean = { all { it != null } }
     ): Boolean = toGetAsync(sample, condition) != null

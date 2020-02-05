@@ -21,7 +21,7 @@ public class Wait(
         }
     }
 
-    public fun <T> toGetAsync(retrieve: () -> T?, condition: (T?) -> Boolean = { it != null }): T? =
+    public suspend fun <T> toGetAsync(retrieve: () -> T?, condition: (T?) -> Boolean = { it != null }): T? =
         withTimeoutOrNull(timeout) {
             pollFlow(retrieve)
                 .dropWhile { !condition(it) }
@@ -32,7 +32,7 @@ public class Wait(
         runBlocking { toGetAsync(retrieve, condition) }
 
 
-    public fun untilAsync(condition: () -> Boolean): Boolean =
+    public suspend fun untilAsync(condition: () -> Boolean): Boolean =
         withTimeoutOrNull(timeout) {
             pollFlow(condition)
                 .dropWhile { !it }
