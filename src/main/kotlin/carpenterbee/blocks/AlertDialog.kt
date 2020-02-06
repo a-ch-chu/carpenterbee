@@ -3,7 +3,9 @@
 
 package carpenterbee.blocks
 
-import carpenterbee.*
+import carpenterbee.Block
+import carpenterbee.Page
+import carpenterbee.Session
 import carpenterbee.controls.traits.HasText
 import carpenterbee.functionality.HasFindTimeout
 import carpenterbee.functionality.waiting.TagFinder

@@ -3,7 +3,7 @@
 
 package carpenterbee.controls
 
-import carpenterbee.*
+import carpenterbee.Block
 import carpenterbee.controls.traits.HasText
 import org.openqa.selenium.By
 

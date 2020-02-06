@@ -3,7 +3,8 @@
 
 package carpenterbee.controls
 
-import carpenterbee.*
+import carpenterbee.Block
+import carpenterbee.Control
 import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function

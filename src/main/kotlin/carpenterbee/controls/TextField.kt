@@ -3,8 +3,10 @@
 
 package carpenterbee.controls
 
-import carpenterbee.*
-import carpenterbee.controls.traits.*
+import carpenterbee.Block
+import carpenterbee.Control
+import carpenterbee.controls.traits.HasText
+import carpenterbee.controls.traits.HasValue
 import carpenterbee.functionality.Tag
 import org.openqa.selenium.By
 

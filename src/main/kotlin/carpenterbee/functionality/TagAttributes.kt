@@ -5,9 +5,17 @@ package carpenterbee.functionality
 
 import org.openqa.selenium.WebElement
 
+public object Tag {
+    public const val htmlClass = "class"
+    public const val id = "id"
+    public const val style = "style"
+    public const val title = "title"
+    public const val value = "value"
+}
+
 public val WebElement.htmlClasses: Sequence<String>
     get() =
-        getAttribute(Tag.htmlClass)
+        (getAttribute(Tag.htmlClass) ?: "")
             .split(' ')
             .filter { !it.isBlank() }
             .asSequence()

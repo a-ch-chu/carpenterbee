@@ -3,7 +3,8 @@
 
 package carpenterbee.blocks
 
-import carpenterbee.*
+import carpenterbee.Block
+import carpenterbee.Section
 import carpenterbee.controls.options.Option
 import carpenterbee.getElements
 import org.openqa.selenium.By

@@ -3,9 +3,10 @@
 
 package carpenterbee.controls.options
 
-import carpenterbee.*
+import carpenterbee.Block
 import carpenterbee.controls.Button
-import carpenterbee.controls.traits.*
+import carpenterbee.controls.traits.HasValue
+import carpenterbee.controls.traits.Selectable
 import carpenterbee.functionality.Tag
 import org.openqa.selenium.By
 

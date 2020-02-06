@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.functionality.verification
+package carpenterbee.functionality
 
 import carpenterbee.Element
 
@@ -13,4 +13,10 @@ public fun <TElement : Element> TElement.verifyThat(fact: String, verification: 
         throw VerificationError("Unable to verify that $fact.")
     }
     return this
+}
+
+public open class VerificationError : AssertionError {
+    public constructor() : super()
+    public constructor(message: String?) : super(message)
+    public constructor(message: String?, cause: Throwable?) : super(message, cause)
 }

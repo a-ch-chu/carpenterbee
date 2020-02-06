@@ -9,8 +9,7 @@ import carpenterbee.sequencers.SequencerException
 import org.openqa.selenium.StaleElementReferenceException
 import org.openqa.selenium.WebElement
 
-public open class AlterSequencer(public val wait: Wait = Wait()) :
-    Sequencer {
+public open class TransformsSequencer(public val wait: Wait = Wait()) : Sequencer {
     protected var stored: WebElement? = null
 
     public override fun preInteract(tag: WebElement) {

@@ -4,6 +4,7 @@
 package carpenterbee
 
 import carpenterbee.functionality.HasParent
+import carpenterbee.functionality.getOrNull
 import carpenterbee.functionality.waiting.TagFinder
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.specifiers.Specifiers
@@ -40,7 +41,7 @@ public abstract class Section<TParent : Block>(
     public override val parent: TParent,
     public override val specifier: By
 ) : Block(parent.session), HasParent<TParent> {
-    public override val scope: SearchContext? get() = parent.scope.findOrNull(specifier)
+    public override val scope: SearchContext? get() = getOrNull()
 
     public val tag get() = TagFinder.find(this)
 }
@@ -50,9 +51,9 @@ public abstract class Control<TParent : Block, TDefaultRoute : Block>(
     public override val specifier: By,
     protected val route: (TParent) -> TDefaultRoute
 ) : Element(parent.session), HasParent<TParent> {
-    public override val scope: SearchContext? get() = parent.scope.findOrNull(specifier)
+    public override val scope: SearchContext? get() = getOrNull()
 
-    public var sequencers = listOf<Sequencer>()
+    public val sequencers = mutableListOf<Sequencer>()
 
     internal val tag get() = TagFinder.find(this)
 
