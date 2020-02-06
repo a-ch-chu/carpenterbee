@@ -10,24 +10,28 @@ import org.openqa.selenium.StaleElementReferenceException
 import org.openqa.selenium.WebElement
 
 public open class TransformsSequencer(public val wait: Wait = Wait()) : Sequencer {
-    protected var stored: WebElement? = null
+    protected lateinit var stored: WebElement
 
     public override fun preInteract(tag: WebElement) {
         stored = tag
     }
 
     public override fun postInteract(tag: WebElement) {
-        if (!wait.until { stored?.stale != false })
+        if (!wait.until { ::stored.isInitialized && stored.stale })
             throw SequencerException("Timed out waiting for DOM mutations to occur after interaction.")
     }
 
     private val WebElement.stale: Boolean
         get() {
             return try {
-                val enabled = isEnabled
-                enabled && !enabled // always false
+                poke()
+                false
             } catch (_: StaleElementReferenceException) {
                 true
             }
         }
+
+    private fun WebElement.poke() {
+        isEnabled
+    }
 }

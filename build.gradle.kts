@@ -1,4 +1,4 @@
-@file:Suppress("SpellCheckingInspection", "SuspiciousCollectionReassignment")
+@file:Suppress("SpellCheckingInspection")
 
 plugins {
     kotlin("jvm") version "1.3.61"
@@ -29,13 +29,13 @@ tasks {
     compileKotlin {
         kotlinOptions {
             jvmTarget = "1.8"
-            freeCompilerArgs += compilerArgs
+            freeCompilerArgs = compilerArgs
         }
     }
     compileTestKotlin {
         kotlinOptions {
             jvmTarget = "1.8"
-            freeCompilerArgs += compilerArgs
+            freeCompilerArgs = compilerArgs
         }
     }
     jar
