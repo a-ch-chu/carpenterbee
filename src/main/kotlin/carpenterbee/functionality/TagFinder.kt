@@ -1,11 +1,10 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.functionality.waiting
+package carpenterbee.functionality
 
-import carpenterbee.functionality.getOrNull
-import carpenterbee.functionality.HasFindTimeout
-import carpenterbee.functionality.HasParent
+import carpenterbee.extensions.getOrNull
+import carpenterbee.functionality.waiting.Wait
 import org.openqa.selenium.NotFoundException
 import org.openqa.selenium.WebElement
 

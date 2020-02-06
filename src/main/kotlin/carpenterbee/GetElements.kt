@@ -3,7 +3,7 @@
 
 package carpenterbee
 
-import carpenterbee.functionality.waiting.MultiTagFinder
+import carpenterbee.functionality.MultiTagFinder
 import carpenterbee.functionality.waiting.StableWait
 import carpenterbee.specifiers.ByWebElement
 import org.openqa.selenium.By

@@ -5,7 +5,7 @@ package carpenterbee.blocks
 
 import carpenterbee.Page
 import carpenterbee.Session
-import carpenterbee.functionality.getOrNull
+import carpenterbee.extensions.getOrNull
 import org.openqa.selenium.By
 import org.openqa.selenium.SearchContext
 

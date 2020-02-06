@@ -6,8 +6,7 @@ package carpenterbee.controls
 import carpenterbee.Block
 import carpenterbee.Control
 import carpenterbee.controls.traits.HasText
-import carpenterbee.controls.traits.HasValue
-import carpenterbee.functionality.Tag
+import carpenterbee.extensions.value
 import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function
@@ -17,9 +16,8 @@ public open class TextField<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,
     specifier: By,
     route: (TParent) -> TDefaultRoute
-) : Control<TParent, TDefaultRoute>(parent, specifier, route), HasText, HasValue {
-    public override val text: String get() = read { text }
-    public override val value: String get() = read { getAttribute(Tag.value) }
+) : Control<TParent, TDefaultRoute>(parent, specifier, route), HasText {
+    public override val text: String get() = read { value ?: "" }
 
     public fun enter(text: Any?) = enter(text, route)
     public fun <TRouteTo : Block> enter(text: Any?, route: (TParent) -> TRouteTo) =

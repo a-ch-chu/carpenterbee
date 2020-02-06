@@ -4,8 +4,8 @@
 package carpenterbee
 
 import carpenterbee.functionality.HasParent
-import carpenterbee.functionality.getOrNull
-import carpenterbee.functionality.waiting.TagFinder
+import carpenterbee.extensions.getOrNull
+import carpenterbee.functionality.TagFinder
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.specifiers.Specifiers
 import org.openqa.selenium.By

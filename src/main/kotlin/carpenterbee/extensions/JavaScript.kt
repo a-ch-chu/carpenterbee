@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.functionality
+package carpenterbee.extensions
 
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebElement
@@ -30,7 +30,10 @@ public inline fun <reified TReturn : Any> WebElement.javascriptProperty(property
 
 @Suppress("FunctionName") // Factory function
 inline fun <reified TExpected> JavascriptReturnException(forObject: Any) =
-    JavascriptReturnException(TExpected::class.simpleName, forObject::class.simpleName)
+    JavascriptReturnException(
+        TExpected::class.simpleName,
+        forObject::class.simpleName
+    )
 
 public class JavascriptReturnException(expectedType: String?, actualType: String?) : TypeCastException(
     "Expected javascript execution to return type $expectedType. Instead got return of type: $actualType."

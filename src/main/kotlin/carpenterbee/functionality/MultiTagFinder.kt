@@ -1,14 +1,16 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.functionality.waiting
+package carpenterbee.functionality
 
+import carpenterbee.functionality.waiting.StableWait
+import carpenterbee.functionality.waiting.Wait
 import org.openqa.selenium.By
 import org.openqa.selenium.NotFoundException
 import org.openqa.selenium.SearchContext
 import org.openqa.selenium.WebElement
 
-public object MultiTagFinder {
+public object  MultiTagFinder {
     public fun findSome(
         scope: SearchContext?,
         specifier: By,

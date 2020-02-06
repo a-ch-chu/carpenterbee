@@ -7,7 +7,7 @@ import carpenterbee.Block
 import carpenterbee.controls.Button
 import carpenterbee.controls.traits.HasValue
 import carpenterbee.controls.traits.Selectable
-import carpenterbee.functionality.Tag
+import carpenterbee.extensions.value
 import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function
@@ -20,7 +20,7 @@ public open class Option<TParent : Block, TDefaultRoute : Block>(
     route: (TParent) -> TDefaultRoute
 ) : Button<TParent, TDefaultRoute>(parent, specifier, route), Selectable, HasValue {
     public override val selected: Boolean get() = read { selected }
-    public override val value: String get() = read { getAttribute(Tag.value) }
+    public override val value: String get() = read { value!! }
 
     protected fun <TRouteTo : Block> clickIf(condition: Boolean, route: (TParent) -> TRouteTo) =
         if (condition) interact(route) { click() } else route(parent)
