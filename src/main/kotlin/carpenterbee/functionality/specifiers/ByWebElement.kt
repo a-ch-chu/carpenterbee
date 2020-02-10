@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.specifiers
+package carpenterbee.functionality.specifiers
 
 import org.openqa.selenium.By
 import org.openqa.selenium.SearchContext

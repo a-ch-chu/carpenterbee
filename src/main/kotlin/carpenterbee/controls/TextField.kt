@@ -6,7 +6,7 @@ package carpenterbee.controls
 import carpenterbee.Block
 import carpenterbee.Control
 import carpenterbee.controls.traits.HasText
-import carpenterbee.extensions.value
+import carpenterbee.functionality.value
 import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function

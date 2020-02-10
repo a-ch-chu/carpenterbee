@@ -3,7 +3,7 @@
 
 package carpenterbee.sequencers
 
-import carpenterbee.extensions.executeScript
+import carpenterbee.functionality.executeScript
 import carpenterbee.functionality.waiting.Wait
 import org.openqa.selenium.WebElement
 

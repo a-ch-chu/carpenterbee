@@ -7,7 +7,7 @@ import carpenterbee.Block
 import carpenterbee.controls.Button
 import carpenterbee.controls.traits.HasValue
 import carpenterbee.controls.traits.Selectable
-import carpenterbee.extensions.value
+import carpenterbee.functionality.value
 import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function

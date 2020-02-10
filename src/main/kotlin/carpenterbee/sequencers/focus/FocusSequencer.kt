@@ -3,7 +3,7 @@
 
 package carpenterbee.sequencers.focus
 
-import carpenterbee.extensions.executeScript
+import carpenterbee.functionality.executeScript
 import carpenterbee.sequencers.Sequencer
 import org.openqa.selenium.WebElement
 

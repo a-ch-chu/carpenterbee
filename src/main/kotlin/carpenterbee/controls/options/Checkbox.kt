@@ -6,9 +6,9 @@ package carpenterbee.controls.options
 import carpenterbee.Block
 import carpenterbee.controls.traits.HasText
 import carpenterbee.extensions.getOrNull
-import carpenterbee.extensions.id
+import carpenterbee.functionality.id
 import carpenterbee.functionality.TagFinder
-import carpenterbee.specifiers.Specifiers
+import carpenterbee.functionality.specifiers.Specifiers
 import org.openqa.selenium.By
 
 private val noLabelException

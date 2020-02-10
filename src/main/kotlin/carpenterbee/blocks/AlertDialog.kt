@@ -7,7 +7,7 @@ import carpenterbee.Block
 import carpenterbee.Page
 import carpenterbee.Session
 import carpenterbee.controls.traits.HasText
-import carpenterbee.functionality.HasFindTimeout
+import carpenterbee.HasFindTimeout
 import carpenterbee.functionality.TagFinder
 import org.openqa.selenium.Alert
 import org.openqa.selenium.NoAlertPresentException

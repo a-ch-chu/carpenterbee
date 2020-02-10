@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.extensions
+package carpenterbee.functionality
 
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebElement

@@ -3,14 +3,14 @@
 
 package carpenterbee
 
-import carpenterbee.functionality.MultiTagFinder
+import carpenterbee.functionality.TagFinder
 import carpenterbee.functionality.waiting.StableWait
-import carpenterbee.specifiers.ByWebElement
+import carpenterbee.functionality.specifiers.ByWebElement
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 
 private fun <T> Block.mapChildren(specifier: By, wait: StableWait, mapping: (WebElement) -> T) =
-    MultiTagFinder.findStable(scope, specifier, wait).map(mapping)
+    TagFinder.findStable(scope, specifier, wait).map(mapping)
 
 public fun <TElement : Element, TParent : Block> getElements(
     constructor: (TParent, By) -> TElement,
