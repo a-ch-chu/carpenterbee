@@ -3,7 +3,7 @@
 
 package carpenterbee.extensions
 
-import carpenterbee.HasParent
+import carpenterbee.functionality.HasParent
 import carpenterbee.functionality.TagFinder
 
 public val HasParent<*>.present get() = !absent

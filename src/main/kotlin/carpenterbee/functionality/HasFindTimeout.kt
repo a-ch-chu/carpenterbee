@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee
+package carpenterbee.functionality
 
 import carpenterbee.functionality.waiting.Default
 import kotlin.time.Duration

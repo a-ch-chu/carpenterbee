@@ -1,8 +1,9 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee
+package carpenterbee.functionality
 
+import carpenterbee.Block
 import org.openqa.selenium.By
 
 public interface HasParent<TParent : Block> : HasFindTimeout {

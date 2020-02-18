@@ -5,6 +5,9 @@ package carpenterbee.functionality
 
 import org.openqa.selenium.WebElement
 
+public fun WebElement.getDataAttribute(name: String): String? =
+    getAttribute("data-$name")
+
 public val WebElement.htmlClasses: Sequence<String>
     get() =
         (getAttribute("class") ?: "")
@@ -14,6 +17,9 @@ public val WebElement.htmlClasses: Sequence<String>
 
 public val WebElement.id: String?
     get() = getAttribute("id")
+
+public val WebElement.onClick: String?
+    get() = getAttribute("onclick")
 
 public val WebElement.style: String?
     get() = getAttribute("style")

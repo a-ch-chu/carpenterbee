@@ -3,7 +3,7 @@
 
 package carpenterbee.extensions
 
-import carpenterbee.HasParent
+import carpenterbee.functionality.HasParent
 import org.openqa.selenium.By
 import org.openqa.selenium.SearchContext
 import org.openqa.selenium.WebElement

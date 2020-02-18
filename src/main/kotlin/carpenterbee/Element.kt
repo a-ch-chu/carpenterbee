@@ -4,6 +4,7 @@
 package carpenterbee
 
 import carpenterbee.extensions.getOrNull
+import carpenterbee.functionality.HasParent
 import carpenterbee.functionality.TagFinder
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.functionality.specifiers.Specifiers

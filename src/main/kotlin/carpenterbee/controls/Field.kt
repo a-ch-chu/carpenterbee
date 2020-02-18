@@ -10,9 +10,9 @@ import carpenterbee.functionality.value
 import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function
-public fun <TParent : Block> TextField(parent: TParent, specifier: By) = TextField(parent, specifier, { it })
+public fun <TParent : Block> Field(parent: TParent, specifier: By) = Field(parent, specifier, { it })
 
-public open class TextField<TParent : Block, TDefaultRoute : Block>(
+public open class Field<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,
     specifier: By,
     route: (TParent) -> TDefaultRoute
