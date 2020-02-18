@@ -2,6 +2,8 @@
 
 plugins {
     kotlin("jvm") version "1.3.61"
+    `java-library`
+    `maven-publish`
 }
 
 group = "org.example"
@@ -13,10 +15,10 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+    api(kotlin("stdlib-jdk8"))
+    api("org.seleniumhq.selenium", "selenium-java", "4.0.0-alpha-4")
     implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.3.3")
-    implementation("org.seleniumhq.selenium", "selenium-java", "4.0.0-alpha-4")
 }
 
 val compilerArgs = listOf(
@@ -38,5 +40,12 @@ tasks {
             freeCompilerArgs = compilerArgs
         }
     }
-    jar
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
 }
