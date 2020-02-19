@@ -12,7 +12,5 @@ public open class Image<TParent : Block>(parent: TParent, specifier: By) : Secti
         get() = tag.getAttribute("src")
 
     public val sourceUrl: URL?
-        get() =
-            if (source == null) null
-            else URL(URL(session.driver.currentUrl), source)
+        get() = source?.let { URL(URL(session.driver.currentUrl), source) }
 }

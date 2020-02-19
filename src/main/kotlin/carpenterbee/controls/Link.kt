@@ -18,10 +18,9 @@ public open class Link<TParent : Block, TDefaultRoute : Block>(
 ) : Button<TParent, TDefaultRoute>(parent, specifier, route), HasText {
     public override val text: String get() = read { text }
 
-    public val reference: String? get() = read { getAttribute("href") }
+    public val reference: String?
+        get() = read { getAttribute("href") }
 
     public val referenceUrl: URL?
-        get() =
-            if (reference == null) null
-            else URL(URL(session.driver.currentUrl), reference)
+        get() = reference?.let { URL(URL(session.driver.currentUrl), reference) }
 }
