@@ -12,7 +12,7 @@ public val WebElement.htmlClasses: Sequence<String>
     get() =
         (getAttribute("class") ?: "")
             .split(' ')
-            .filter { !it.isBlank() }
+            .filterNot(String::isBlank)
             .asSequence()
 
 public val WebElement.id: String?

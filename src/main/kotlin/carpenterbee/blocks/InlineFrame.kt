@@ -11,5 +11,5 @@ import org.openqa.selenium.SearchContext
 
 public open class InlineFrame<TParent : Block>(parent: TParent, specifier: By) : Section<TParent>(parent, specifier) {
     public override val scope: SearchContext?
-        get() = getOrNull()?.let { session.driver.switchTo().frame(it) }
+        get() = getOrNull()?.let(session.driver.switchTo()::frame)
 }
