@@ -9,6 +9,10 @@ import carpenterbee.Element
 import org.openqa.selenium.By
 
 public fun <TElement : Element, TParent : Block> TParent.dynamic(
+    constructor: (TParent) -> TElement
+) = constructor(this)
+
+public fun <TElement : Element, TParent : Block> TParent.dynamic(
     constructor: (TParent, By) -> TElement,
     specifier: By
 ) = constructor(this, specifier)
