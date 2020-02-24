@@ -20,7 +20,4 @@ public open class Link<TParent : Block, TDefaultRoute : Block>(
 
     public val reference: String?
         get() = read { getAttribute("href") }
-
-    public val referenceUrl: URL?
-        get() = reference?.let { URL(URL(session.driver.currentUrl), reference) }
 }

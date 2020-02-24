@@ -18,6 +18,9 @@ public val WebElement.htmlClasses: Sequence<String>
 public val WebElement.id: String?
     get() = getAttribute("id")
 
+public val WebElement.name: String?
+    get() = getAttribute("name")
+
 public val WebElement.onClick: String?
     get() = getAttribute("onclick")
 
