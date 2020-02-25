@@ -29,16 +29,22 @@ public class Session(val driver: WebDriver) : Closeable {
         else -> null
     }
 
-    public fun <TPage : Page, TNavigator : Page.Navigator<TPage>> navigateTo(
+    public fun <TPage : Page, TNavigator : Page.Navigator<TPage>, TArg> navigate(
+        action: Nav.(TArg) -> Unit,
         navigator: TNavigator,
-        getUrl: TNavigator.() -> String
-    ) = navigateTo(navigator, navigator.getUrl())
+        getArg: TNavigator.() -> TArg
+    ): TPage = navigate({ action(navigator.getArg()) }, navigator.constructor)
 
-    public fun <TPage : Page> navigateTo(navigator: Page.Navigator<TPage>, url: String) =
-        navigateTo(navigator.constructor, url)
+    public fun <TPage : Page, TNavigator : Page.Navigator<TPage>> navigate(
+        action: Nav.(TNavigator) -> Unit,
+        navigator: TNavigator
+    ): TPage = navigate({ action(navigator) }, navigator.constructor)
 
-    public fun <TPage : Page> navigateTo(constructor: (Session) -> TPage, url: String): TPage {
-        driver.navigate().to(url)
+    public fun <TPage : Page> navigate(
+        action: Nav.() -> Unit,
+        constructor: (Session) -> TPage
+    ): TPage {
+        driver.navigate().action()
         return constructor(this)
     }
 
