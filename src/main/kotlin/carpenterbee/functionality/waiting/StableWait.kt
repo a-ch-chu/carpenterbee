@@ -23,6 +23,7 @@ public class StableWait(
             if (samples.size >= stability) {
                 emit(samples)
                 samples.drop(1)
+                delay(resolution)
             }
         }
     }
