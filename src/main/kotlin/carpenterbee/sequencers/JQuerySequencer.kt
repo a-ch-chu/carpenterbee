@@ -5,7 +5,7 @@ package carpenterbee.sequencers
 
 import carpenterbee.functionality.executeScript
 import carpenterbee.functionality.waiting.Wait
-import org.openqa.selenium.WebElement
+import carpenterbee.WebElement
 
 public class JQuerySequencer(public val wait: Wait = Wait()) : Sequencer {
     override fun preInteract(tag: WebElement) {}

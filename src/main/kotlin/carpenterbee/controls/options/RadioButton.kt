@@ -4,8 +4,8 @@
 package carpenterbee.controls.options
 
 import carpenterbee.Block
+import carpenterbee.By
 import carpenterbee.controls.traits.HasText
-import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> RadioButton(parent: TParent, specifier: By) =

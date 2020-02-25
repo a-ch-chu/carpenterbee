@@ -4,7 +4,7 @@
 package carpenterbee.functionality
 
 import carpenterbee.Block
-import org.openqa.selenium.By
+import carpenterbee.By
 
 public interface HasParent<TParent : Block> : HasFindTimeout {
     public val parent: TParent

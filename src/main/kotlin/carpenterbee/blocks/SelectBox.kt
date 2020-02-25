@@ -3,11 +3,8 @@
 
 package carpenterbee.blocks
 
-import carpenterbee.Block
-import carpenterbee.Section
+import carpenterbee.*
 import carpenterbee.controls.options.Option
-import carpenterbee.getElements
-import org.openqa.selenium.By
 
 private typealias BoxOption<TParent, TDefaultRoute> = Option<SelectBox<TParent, TDefaultRoute>, TDefaultRoute>
 

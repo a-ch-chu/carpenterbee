@@ -8,9 +8,6 @@ import carpenterbee.functionality.HasParent
 import carpenterbee.functionality.TagFinder
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.functionality.specifiers.Specifiers
-import org.openqa.selenium.By
-import org.openqa.selenium.SearchContext
-import org.openqa.selenium.WebElement
 
 public sealed class Element(val session: Session) {
     init {

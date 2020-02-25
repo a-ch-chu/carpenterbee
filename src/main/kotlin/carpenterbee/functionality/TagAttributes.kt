@@ -3,7 +3,7 @@
 
 package carpenterbee.functionality
 
-import org.openqa.selenium.WebElement
+import carpenterbee.WebElement
 
 public fun WebElement.getDataAttribute(name: String): String? =
     getAttribute("data-$name")

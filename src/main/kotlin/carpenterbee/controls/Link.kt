@@ -4,9 +4,8 @@
 package carpenterbee.controls
 
 import carpenterbee.Block
+import carpenterbee.By
 import carpenterbee.controls.traits.HasText
-import org.openqa.selenium.By
-import java.net.URL
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Link(parent: TParent, specifier: By) = Link(parent, specifier, { it })

@@ -4,11 +4,11 @@
 package carpenterbee.controls.options
 
 import carpenterbee.Block
+import carpenterbee.By
 import carpenterbee.controls.Button
 import carpenterbee.controls.traits.HasValue
 import carpenterbee.controls.traits.Selectable
 import carpenterbee.functionality.value
-import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Option(parent: TParent, specifier: By) =

@@ -3,13 +3,11 @@
 
 package carpenterbee.functionality
 
+import carpenterbee.*
 import carpenterbee.extensions.getOrNull
 import carpenterbee.functionality.waiting.StableWait
 import carpenterbee.functionality.waiting.Wait
-import org.openqa.selenium.By
 import org.openqa.selenium.NotFoundException
-import org.openqa.selenium.SearchContext
-import org.openqa.selenium.WebElement
 
 public object TagFinder {
     public fun <T> findOrNull(element: HasFindTimeout, fetch: () -> T?): T? =

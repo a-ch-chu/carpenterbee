@@ -3,10 +3,7 @@
 
 package carpenterbee.extensions
 
-import carpenterbee.Block
-import carpenterbee.Control
-import carpenterbee.Element
-import org.openqa.selenium.By
+import carpenterbee.*
 
 public fun <TElement : Element, TParent : Block> TParent.dynamic(
     constructor: (TParent) -> TElement

@@ -3,7 +3,7 @@
 
 package carpenterbee.sequencers
 
-import org.openqa.selenium.WebElement
+import carpenterbee.WebElement
 
 public interface Sequencer {
     public fun preInteract(tag: WebElement)

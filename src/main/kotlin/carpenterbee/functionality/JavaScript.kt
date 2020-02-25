@@ -3,8 +3,8 @@
 
 package carpenterbee.functionality
 
+import carpenterbee.WebElement
 import org.openqa.selenium.JavascriptExecutor
-import org.openqa.selenium.WebElement
 import org.openqa.selenium.WrapsDriver
 import org.openqa.selenium.WrapsElement
 

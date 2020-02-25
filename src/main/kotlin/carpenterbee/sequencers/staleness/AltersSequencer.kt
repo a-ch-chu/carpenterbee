@@ -4,7 +4,7 @@
 package carpenterbee.sequencers.staleness
 
 import carpenterbee.functionality.waiting.Wait
-import org.openqa.selenium.WebElement
+import carpenterbee.WebElement
 
 public class AltersSequencer(private val readTag: () -> WebElement, wait: Wait = Wait()) :
     TransformsSequencer(wait) {

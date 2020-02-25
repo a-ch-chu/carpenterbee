@@ -4,7 +4,7 @@
 package carpenterbee.sequencers.focus
 
 import carpenterbee.sequencers.Sequencer
-import org.openqa.selenium.WebElement
+import carpenterbee.WebElement
 
 public object FocusBlurSequencer : Sequencer {
     public override fun preInteract(tag: WebElement) =

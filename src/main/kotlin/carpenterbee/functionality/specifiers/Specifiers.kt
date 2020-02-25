@@ -3,7 +3,7 @@
 
 package carpenterbee.functionality.specifiers
 
-import org.openqa.selenium.By
+import carpenterbee.By
 
 public object Specifiers {
     public fun id(id: String): By = By.id(id)

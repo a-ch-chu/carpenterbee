@@ -3,11 +3,9 @@
 
 package carpenterbee.controls
 
-import carpenterbee.Block
-import carpenterbee.Control
+import carpenterbee.*
 import carpenterbee.controls.traits.HasText
 import carpenterbee.functionality.value
-import org.openqa.selenium.By
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Field(parent: TParent, specifier: By) = Field(parent, specifier, { it })

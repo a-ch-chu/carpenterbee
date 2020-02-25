@@ -3,9 +3,7 @@
 
 package carpenterbee.functionality.specifiers
 
-import org.openqa.selenium.By
-import org.openqa.selenium.SearchContext
-import org.openqa.selenium.WebElement
+import carpenterbee.*
 
 public class ByWebElement(private val element: WebElement, private vararg val moreElements: WebElement) : By() {
     public override fun findElement(context: SearchContext?) = element

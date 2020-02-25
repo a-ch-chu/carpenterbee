@@ -6,8 +6,6 @@ package carpenterbee
 import carpenterbee.functionality.TagFinder
 import carpenterbee.functionality.waiting.StableWait
 import carpenterbee.functionality.specifiers.ByWebElement
-import org.openqa.selenium.By
-import org.openqa.selenium.WebElement
 
 private fun <T> Block.mapChildren(specifier: By, wait: StableWait, mapping: (WebElement) -> T) =
     TagFinder.findStable(scope, specifier, wait).map(mapping)

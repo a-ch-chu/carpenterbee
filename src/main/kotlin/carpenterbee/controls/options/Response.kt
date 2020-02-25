@@ -4,7 +4,7 @@
 package carpenterbee.controls.options
 
 import carpenterbee.Block
-import org.openqa.selenium.By
+import carpenterbee.By
 
 public fun <TDefaultRoute : Block> Sequence<Response<*, TDefaultRoute>>.setAll(selected: Boolean) =
     map { it.setTo(selected) }.last()

@@ -3,9 +3,7 @@
 
 package carpenterbee.controls
 
-import carpenterbee.Block
-import carpenterbee.Control
-import org.openqa.selenium.By
+import carpenterbee.*
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Button(parent: TParent, specifier: By) = Button(parent, specifier, { it })

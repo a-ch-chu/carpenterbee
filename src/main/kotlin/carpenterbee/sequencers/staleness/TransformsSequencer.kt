@@ -6,8 +6,8 @@ package carpenterbee.sequencers.staleness
 import carpenterbee.functionality.waiting.Wait
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.sequencers.SequencerException
+import carpenterbee.WebElement
 import org.openqa.selenium.StaleElementReferenceException
-import org.openqa.selenium.WebElement
 
 public open class TransformsSequencer(public val wait: Wait = Wait()) : Sequencer {
     protected lateinit var stored: WebElement

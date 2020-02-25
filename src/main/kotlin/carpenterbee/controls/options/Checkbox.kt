@@ -4,12 +4,12 @@
 package carpenterbee.controls.options
 
 import carpenterbee.Block
+import carpenterbee.By
 import carpenterbee.controls.traits.HasText
 import carpenterbee.extensions.getOrNull
 import carpenterbee.functionality.id
 import carpenterbee.functionality.TagFinder
 import carpenterbee.functionality.specifiers.Specifiers
-import org.openqa.selenium.By
 
 private val noLabelException
     get() = IllegalStateException("Attempted to find label for unlabelled element.")

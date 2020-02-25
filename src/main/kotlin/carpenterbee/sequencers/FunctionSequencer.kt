@@ -3,7 +3,7 @@
 
 package carpenterbee.sequencers
 
-import org.openqa.selenium.WebElement
+import carpenterbee.WebElement
 
 public class FunctionSequencer(
     private val preInteraction: (WebElement) -> Unit,
