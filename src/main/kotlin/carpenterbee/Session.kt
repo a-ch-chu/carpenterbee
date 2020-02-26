@@ -11,12 +11,12 @@ public class Session(val driver: WebDriver) : Closeable {
 
     public var lastPage: Page? = null; private set
     public var lastBlock: Block? = null; private set
-    public var lastControl: Control<*, *>? = null; private set
+    public var lastElement: Element? = null; private set
 
     public fun track(element: Element) {
         if (element is Page) lastPage = element
         if (element is Block) lastBlock = element
-        if (element is Control<*, *>) lastControl = element
+        lastElement = element
     }
 
     public inline fun <reified TElement : Element> last(): TElement =
@@ -25,7 +25,7 @@ public class Session(val driver: WebDriver) : Closeable {
     public inline fun <reified TElement : Element> lastOrNull(): TElement? = when {
         lastPage is TElement -> lastPage as TElement
         lastBlock is TElement -> lastBlock as TElement
-        lastControl is TElement -> lastControl as TElement
+        lastElement is TElement -> lastElement as TElement
         else -> null
     }
 
