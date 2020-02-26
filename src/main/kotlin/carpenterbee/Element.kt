@@ -17,7 +17,7 @@ public sealed class Element(val session: Session) {
     public abstract val scope: SearchContext?
 
     public companion object {
-        public val by get() = Specifiers
+        public val by: Specifiers get() = Specifiers
     }
 }
 
@@ -27,9 +27,14 @@ public abstract class Page(session: Session) : Block(session) {
     public override val scope: SearchContext?
         get() = session.driver.switchTo().defaultContent()
 
-    public abstract class Navigator<TThis : Page>(val constructor: (Session) -> TThis) : (Block) -> TThis {
+    public abstract class Navigator<TThis : Page>(
+        val constructor: (Session) -> TThis
+    ) : (Block) -> TThis {
         public override fun invoke(p1: Block): TThis = constructor(p1.session)
-        public fun <TRouteTo : Section<*>> section(path: TThis.() -> TRouteTo) =
+
+        public fun <TParent : Block, TRouteTo : Section<TParent>> section(
+            path: TThis.() -> TRouteTo
+        ): (Block) -> TRouteTo =
             { source: Block -> constructor(source.session).path() }
     }
 }
@@ -40,7 +45,7 @@ public abstract class Section<TParent : Block>(
 ) : Block(parent.session), HasParent<TParent> {
     public override val scope: SearchContext? get() = getOrNull()
 
-    public val tag get() = TagFinder.find(this)
+    public val tag: WebElement get() = TagFinder.find(this)
 }
 
 public abstract class Control<TParent : Block, TDefaultRoute : Block>(
@@ -50,9 +55,9 @@ public abstract class Control<TParent : Block, TDefaultRoute : Block>(
 ) : Element(parent.session), HasParent<TParent> {
     public override val scope: SearchContext? get() = getOrNull()
 
-    public val sequencers = mutableListOf<Sequencer>()
+    public val sequencers: MutableList<Sequencer> = mutableListOf()
 
-    private val tag get() = TagFinder.find(this)
+    private val tag: WebElement get() = TagFinder.find(this)
 
     public fun <TRouteTo : Block> interact(
         route: (TParent) -> TRouteTo,
