@@ -17,7 +17,7 @@ public sealed class Element(val session: Session) {
     public abstract val scope: SearchContext?
 
     public companion object {
-        val by get() = Specifiers
+        public val by get() = Specifiers
     }
 }
 
@@ -52,7 +52,7 @@ public abstract class Control<TParent : Block, TDefaultRoute : Block>(
 
     public val sequencers = mutableListOf<Sequencer>()
 
-    internal val tag get() = TagFinder.find(this)
+    private val tag get() = TagFinder.find(this)
 
     public fun <TRouteTo : Block> interact(
         route: (TParent) -> TRouteTo,

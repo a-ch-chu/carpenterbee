@@ -14,17 +14,19 @@ public fun WebElement.getJavascriptExecutor(): JavascriptExecutor {
     return (element as WrapsDriver).wrappedDriver as JavascriptExecutor
 }
 
-internal fun WebElement.executeScript(script: String, vararg args: Any?) {
-    executeScript<Any>(script, *args)
+public fun WebElement.voidProperty(property: String) {
+    executeVoid("arguments[0].$property;", this)
 }
 
-public inline fun <reified TReturn : Any> WebElement.executeScript(script: String, vararg args: Any?): TReturn =
-    this.getJavascriptExecutor().executeScript(script, *args).run {
-        this as? TReturn ?: throw JavascriptReturnException<TReturn>(this)
-    }
+public fun WebElement.executeVoid(script: String, vararg args: Any?) {
+    scriptReturn<Any>(script, *args)
+}
 
-public inline fun <reified TReturn : Any> WebElement.javascriptProperty(property: String): TReturn =
-    this.getJavascriptExecutor().executeScript("return arguments[0].$property;", this).run {
+public inline fun <reified TReturn : Any> WebElement.scriptProperty(property: String): TReturn =
+    scriptReturn("arguments[0].$property;", this)
+
+public inline fun <reified TReturn : Any> WebElement.scriptReturn(script: String, vararg args: Any?): TReturn =
+    this.getJavascriptExecutor().executeScript("return $script", *args).run {
         this as? TReturn ?: throw JavascriptReturnException<TReturn>(this)
     }
 
