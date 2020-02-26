@@ -23,9 +23,9 @@ public class Session(val driver: WebDriver) : Closeable {
         lastOrNull() ?: throw IllegalStateException("Couldn't find any recent element of the given type.")
 
     public inline fun <reified TElement : Element> lastOrNull(): TElement? = when {
-        lastControl is TElement -> lastControl as TElement
-        lastBlock is TElement -> lastBlock as TElement
         lastPage is TElement -> lastPage as TElement
+        lastBlock is TElement -> lastBlock as TElement
+        lastControl is TElement -> lastControl as TElement
         else -> null
     }
 
