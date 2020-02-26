@@ -6,8 +6,8 @@ package carpenterbee
 import carpenterbee.extensions.getOrNull
 import carpenterbee.functionality.HasParent
 import carpenterbee.functionality.TagFinder
-import carpenterbee.sequencers.Sequencer
 import carpenterbee.functionality.specifiers.Specifiers
+import carpenterbee.sequencers.SequencerList
 
 public sealed class Element(val session: Session) {
     init {
@@ -55,7 +55,7 @@ public abstract class Control<TParent : Block, TDefaultRoute : Block>(
 ) : Element(parent.session), HasParent<TParent> {
     public override val scope: SearchContext? get() = getOrNull()
 
-    public val sequencers: MutableList<Sequencer> = mutableListOf()
+    public val sequencers: SequencerList = SequencerList()
 
     private val tag: WebElement get() = TagFinder.find(this)
 
@@ -63,10 +63,7 @@ public abstract class Control<TParent : Block, TDefaultRoute : Block>(
         route: (TParent) -> TRouteTo,
         interaction: WebElement.() -> Unit
     ): TRouteTo {
-        val tag = tag
-        sequencers.forEach { it.preInteract(tag) }
-        tag.interaction()
-        sequencers.forEach { it.postInteract(tag) }
+        sequencers.sequence(tag, interaction)
         return route(parent)
     }
 

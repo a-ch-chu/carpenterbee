@@ -33,12 +33,12 @@ public class Session(val driver: WebDriver) : Closeable {
         action: Nav.(TArg) -> Unit,
         navigator: TNavigator,
         getArg: TNavigator.() -> TArg
-    ): TPage = navigate({ action(navigator.getArg()) }, navigator.constructor)
+    ): TPage = navigate({ action(navigator.getArg()) }, navigator)
 
     public fun <TPage : Page, TNavigator : Page.Navigator<TPage>> navigate(
-        action: Nav.(TNavigator) -> Unit,
+        action: Nav.() -> Unit,
         navigator: TNavigator
-    ): TPage = navigate({ action(navigator) }, navigator.constructor)
+    ): TPage = navigate(action, navigator.constructor)
 
     public fun <TPage : Page> navigate(
         action: Nav.() -> Unit,
