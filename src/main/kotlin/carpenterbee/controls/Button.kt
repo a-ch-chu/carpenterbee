@@ -6,7 +6,8 @@ package carpenterbee.controls
 import carpenterbee.*
 
 @Suppress("FunctionName") // Factory function
-public fun <TParent : Block> Button(parent: TParent, specifier: By) = Button(parent, specifier, { it })
+public fun <TParent : Block> Button(parent: TParent, specifier: By) =
+    Button(parent, specifier, ::id)
 
 public open class Button<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

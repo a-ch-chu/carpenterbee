@@ -8,7 +8,8 @@ import carpenterbee.controls.traits.HasText
 import carpenterbee.functionality.value
 
 @Suppress("FunctionName") // Factory function
-public fun <TParent : Block> Field(parent: TParent, specifier: By) = Field(parent, specifier, { it })
+public fun <TParent : Block> Field(parent: TParent, specifier: By) =
+    Field(parent, specifier, ::id)
 
 public open class Field<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

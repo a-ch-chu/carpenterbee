@@ -3,8 +3,7 @@
 
 package carpenterbee.controls.options
 
-import carpenterbee.Block
-import carpenterbee.By
+import carpenterbee.*
 
 public fun <TDefaultRoute : Block> Sequence<Response<*, TDefaultRoute>>.setAll(selected: Boolean) =
     map { it.setTo(selected) }.last()
@@ -16,7 +15,7 @@ public fun <TParent : Block, TRouteTo : Block> Sequence<Response<TParent, *>>.se
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Response(parent: TParent, specifier: By) =
-    Response(parent, specifier, { it })
+    Response(parent, specifier, ::id)
 
 public open class Response<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

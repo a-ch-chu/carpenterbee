@@ -23,20 +23,19 @@ public class StableWait(
             if (samples.size >= stability) {
                 emit(samples)
                 samples.drop(1)
-                delay(resolution)
             }
+            delay(resolution)
         }
     }
 
     public suspend fun <T> toGetAsync(
         sample: () -> T?,
         condition: Iterable<T?>.() -> Boolean = { all { it != null } }
-    ): T? =
-        withTimeoutOrNull(timeout) {
-            windowFlow(sample)
-                .dropWhile { !condition(it) }
-                .first().last()
-        }
+    ): T? = withTimeoutOrNull(timeout) {
+        windowFlow(sample)
+            .dropWhile { !condition(it) }
+            .first().last()
+    }
 
     public fun <T> toGet(
         sample: () -> T?,

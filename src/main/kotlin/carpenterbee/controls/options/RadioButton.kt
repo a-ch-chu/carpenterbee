@@ -3,13 +3,12 @@
 
 package carpenterbee.controls.options
 
-import carpenterbee.Block
-import carpenterbee.By
+import carpenterbee.*
 import carpenterbee.controls.traits.HasText
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> RadioButton(parent: TParent, specifier: By) =
-    RadioButton(parent, specifier, { it })
+    RadioButton(parent, specifier, ::id)
 
 public open class RadioButton<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

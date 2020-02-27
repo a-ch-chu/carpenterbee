@@ -3,12 +3,12 @@
 
 package carpenterbee.controls
 
-import carpenterbee.Block
-import carpenterbee.By
+import carpenterbee.*
 import carpenterbee.controls.traits.HasText
 
 @Suppress("FunctionName") // Factory function
-public fun <TParent : Block> Link(parent: TParent, specifier: By) = Link(parent, specifier, { it })
+public fun <TParent : Block> Link(parent: TParent, specifier: By) =
+    Link(parent, specifier, ::id)
 
 public open class Link<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,
