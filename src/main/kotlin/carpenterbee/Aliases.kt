@@ -14,4 +14,4 @@ public typealias Nav = WebDriver.Navigation
 internal typealias SearchContext = SearchContext
 internal typealias WebElement = WebElement
 
-public fun <T> id(self: T) = self
+public fun <T> i(self: T) = self

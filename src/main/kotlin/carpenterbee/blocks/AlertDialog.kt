@@ -38,7 +38,7 @@ public class AlertDialog<TAcceptTo : Block, TDismissTo : Block>(
 
     public fun interact(
         interaction: Alert.() -> Unit
-    ): AlertDialog<TAcceptTo, TDismissTo> = interact(::id, interaction)
+    ): AlertDialog<TAcceptTo, TDismissTo> = interact(::i, interaction)
 
     public fun <TRouteTo> interact(
         route: (AlertDialog<TAcceptTo, TDismissTo>) -> TRouteTo,

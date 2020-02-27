@@ -10,7 +10,7 @@ private typealias BoxOption<TParent, TDefaultRoute> = Option<SelectBox<TParent, 
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> SelectBox(parent: TParent, specifier: By) =
-    SelectBox(parent, specifier, ::id)
+    SelectBox(parent, specifier, ::i)
 
 public open class SelectBox<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

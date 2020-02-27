@@ -11,7 +11,7 @@ import carpenterbee.functionality.value
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Option(parent: TParent, specifier: By) =
-    Option(parent, specifier, ::id)
+    Option(parent, specifier, ::i)
 
 public open class Option<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,
