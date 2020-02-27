@@ -20,7 +20,10 @@ public fun <TElement : Element, TParent : Block, TDefaultRoute : Block> TParent.
     route: (TParent) -> TDefaultRoute
 ) = constructor(this, specifier, route)
 
-public fun <TControl : Control<TParent, TDefaultRoute>, TParent : Block, TDefaultRoute : Block> TParent.dynamic(
+public fun <
+        TControl : Control<TParent, TDefaultRoute>,
+        TParent : Block, TDefaultRoute : Block
+        > TParent.dynamic(
     constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TControl,
     specifier: By,
     route: (TParent) -> TDefaultRoute

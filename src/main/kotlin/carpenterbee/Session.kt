@@ -20,14 +20,18 @@ public class Session(val driver: WebDriver) : Closeable {
     }
 
     public inline fun <reified TElement : Element> last(): TElement =
-        lastOrNull() ?: throw IllegalStateException("Couldn't find any recent element of the given type.")
+        lastOrNull()
+            ?: throw IllegalStateException(
+                "Couldn't find any recent element of the given type."
+            )
 
-    public inline fun <reified TElement : Element> lastOrNull(): TElement? = when {
-        lastPage is TElement -> lastPage as TElement
-        lastBlock is TElement -> lastBlock as TElement
-        lastElement is TElement -> lastElement as TElement
-        else -> null
-    }
+    public inline fun <reified TElement : Element> lastOrNull(): TElement? =
+        when {
+            lastPage is TElement -> lastPage as TElement
+            lastBlock is TElement -> lastBlock as TElement
+            lastElement is TElement -> lastElement as TElement
+            else -> null
+        }
 
     public fun <TPage : Page, TNavigator : Page.Navigator<TPage>, TArg> navigate(
         action: Nav.(TArg) -> Unit,

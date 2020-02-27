@@ -15,7 +15,11 @@ public object TagFinder {
 
     public fun <T> find(element: HasFindTimeout, fetch: () -> T?): T =
         findOrNull(element, fetch)
-            ?: throw NotFoundException("Couldn't find ${element::class.simpleName} after ${element.findTimeout}.")
+            ?: throw NotFoundException(
+                element.let {
+                    "Couldn't find ${it::class.simpleName} after ${it.findTimeout}"
+                }
+            )
 
     public fun findOrNull(element: HasParent<*>): WebElement? =
         findOrNull(element) { element.getOrNull() }
@@ -23,7 +27,10 @@ public object TagFinder {
     public fun find(element: HasParent<*>): WebElement =
         findOrNull(element)
             ?: throw NotFoundException(
-                "Couldn't find ${element::class.simpleName} ${element.specifier} after ${element.findTimeout}."
+                element.let {
+                    "Couldn't find ${it::class.simpleName} ${it.specifier} after" +
+                            " ${it.findTimeout}."
+                }
             )
 
     public fun findSome(
@@ -34,7 +41,9 @@ public object TagFinder {
         wait.toGet(
             { scope?.findElements(specifier) },
             { it?.size ?: 0 > 0 })?.asSequence()
-            ?: throw NotFoundException("Couldn't find any elements $specifier after ${wait.timeout}.")
+            ?: throw NotFoundException(
+                "Couldn't find any elements $specifier after ${wait.timeout}."
+            )
 
     public fun findStable(
         scope: SearchContext?,
@@ -45,5 +54,7 @@ public object TagFinder {
             { scope?.findElements(specifier) },
             { map { it?.size ?: 0 }.distinct().size == 1 }
         )?.asSequence()
-            ?: throw NotFoundException("Couldn't find stable set of elements $specifier after ${wait.timeout}.")
+            ?: throw NotFoundException(
+                "Couldn't find stable set of elements $specifier after ${wait.timeout}."
+            )
 }

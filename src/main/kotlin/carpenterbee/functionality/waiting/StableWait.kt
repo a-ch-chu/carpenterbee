@@ -12,7 +12,7 @@ import kotlin.time.Duration
 public class StableWait(
     public var resolution: Duration = Default.interval,
     public var sampleCount: Int = Default.pollCount,
-    public var stability: Int = 2
+    public var stability: Int = Default.stabilityFactor
 ) {
     public val timeout: Duration get() = resolution * sampleCount
 

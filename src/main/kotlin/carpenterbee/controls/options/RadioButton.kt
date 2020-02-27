@@ -15,5 +15,5 @@ public open class RadioButton<TParent : Block, TDefaultRoute : Block>(
     specifier: By,
     route: (TParent) -> TDefaultRoute
 ) : Response<TParent, TDefaultRoute>(parent, specifier, route), HasText {
-    public override val text get() = getLabel()
+    public override val text: String get() = getLabel()
 }

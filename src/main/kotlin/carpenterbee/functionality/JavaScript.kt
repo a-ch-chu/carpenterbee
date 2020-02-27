@@ -22,21 +22,32 @@ public fun WebElement.executeVoid(script: String, vararg args: Any?) {
     scriptReturn<Any>(script, *args)
 }
 
-public inline fun <reified TReturn : Any> WebElement.scriptProperty(property: String): TReturn =
+public inline fun <reified TReturn : Any> WebElement.scriptProperty(
+    property: String
+): TReturn =
     scriptReturn("arguments[0].$property;", this)
 
-public inline fun <reified TReturn : Any> WebElement.scriptReturn(script: String, vararg args: Any?): TReturn =
-    this.getJavascriptExecutor().executeScript("return $script", *args).run {
-        this as? TReturn ?: throw JavascriptReturnException<TReturn>(this)
-    }
+public inline fun <reified TReturn : Any> WebElement.scriptReturn(
+    script: String,
+    vararg args: Any?
+): TReturn =
+    this.getJavascriptExecutor()
+        .executeScript("return $script", *args)
+        .let {
+            it as? TReturn ?: throw JavascriptReturnException<TReturn>(it)
+        }
 
 @Suppress("FunctionName") // Factory function
-inline fun <reified TExpected> JavascriptReturnException(forObject: Any) =
+public inline fun <reified TExpected> JavascriptReturnException(forObject: Any) =
     JavascriptReturnException(
         TExpected::class.simpleName,
         forObject::class.simpleName
     )
 
-public class JavascriptReturnException(expectedType: String?, actualType: String?) : TypeCastException(
-    "Expected javascript execution to return type $expectedType. Instead got return of type: $actualType."
+public class JavascriptReturnException(
+    expectedType: String?,
+    actualType: String?
+) : TypeCastException(
+    "Expected javascript execution to return type $expectedType. " +
+            "Instead got return of type: $actualType."
 )

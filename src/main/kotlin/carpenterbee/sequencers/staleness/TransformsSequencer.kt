@@ -18,7 +18,9 @@ public open class TransformsSequencer(public val wait: Wait = Wait()) : Sequence
 
     public override fun postInteract(tag: WebElement) {
         if (!wait.until { ::stored.isInitialized && stored.stale })
-            throw SequencerException("Timed out waiting for DOM mutations to occur after interaction.")
+            throw SequencerException(
+                "Timed out waiting for DOM mutations to occur after interaction."
+            )
     }
 
     private val WebElement.stale: Boolean

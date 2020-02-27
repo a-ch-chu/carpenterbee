@@ -15,10 +15,10 @@ public fun <TDefaultRoute : Block> AlertDialog(
     session: Session, route: (Block) -> TDefaultRoute
 ) = AlertDialog(session, route, route)
 
-public class AlertDialog<TAcceptTo : Block, TDismissTo : Block>(
+public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
     session: Session,
-    private val acceptRoute: (Block) -> TAcceptTo,
-    private val dismissRoute: (Block) -> TDismissTo
+    private val acceptRoute: (Block) -> TAcceptRoute,
+    private val dismissRoute: (Block) -> TDismissRoute
 ) : Page(session), HasFindTimeout, HasText {
     public val alert: Alert
         get() = TagFinder.find(this, ::getAlertOrNull)
@@ -37,21 +37,21 @@ public class AlertDialog<TAcceptTo : Block, TDismissTo : Block>(
     public override val text: String get() = alert.text
 
     public fun <TRouteTo> interact(
-        route: (AlertDialog<TAcceptTo, TDismissTo>) -> TRouteTo,
+        route: (AlertDialog<TAcceptRoute, TDismissRoute>) -> TRouteTo,
         interaction: Alert.() -> Unit
     ): TRouteTo {
         alert.interaction()
         return route(this)
     }
 
-    public fun accept(): TAcceptTo = accept(acceptRoute)
+    public fun accept(): TAcceptRoute = accept(acceptRoute)
     public fun <TRouteTo> accept(route: (Block) -> TRouteTo): TRouteTo =
         interact(route) { accept() }
 
-    public fun dismiss(): TDismissTo = dismiss(dismissRoute)
+    public fun dismiss(): TDismissRoute = dismiss(dismissRoute)
     public fun <TRouteTo> dismiss(route: (Block) -> TRouteTo): TRouteTo =
         interact(route) { dismiss() }
 
-    public fun enterText(text: String): AlertDialog<TAcceptTo, TDismissTo> =
+    public fun enterText(text: String): AlertDialog<TAcceptRoute, TDismissRoute> =
         apply { alert.sendKeys(text) }
 }

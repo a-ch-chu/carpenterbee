@@ -15,5 +15,6 @@ public open class Button<TParent : Block, TDefaultRoute : Block>(
     route: (TParent) -> TDefaultRoute
 ) : Control<TParent, TDefaultRoute>(parent, specifier, route) {
     public fun click() = click(route)
-    public fun <TRouteTo : Block> click(route: (TParent) -> TRouteTo) = interact(route) { click() }
+    public fun <TRouteTo : Block> click(route: (TParent) -> TRouteTo) =
+        interact(route) { click() }
 }

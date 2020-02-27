@@ -10,7 +10,6 @@ import carpenterbee.WebElement
 public object BlurSequencer : Sequencer {
     public override fun preInteract(tag: WebElement) {}
 
-    public override fun postInteract(tag: WebElement) {
+    public override fun postInteract(tag: WebElement) =
         tag.voidProperty("blur()")
-    }
 }

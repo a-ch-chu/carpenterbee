@@ -21,9 +21,12 @@ public open class Option<TParent : Block, TDefaultRoute : Block>(
     public override val selected: Boolean get() = read { selected }
     public override val value: String get() = read { value!! }
 
-    protected fun <TRouteTo : Block> clickIf(condition: Boolean, route: (TParent) -> TRouteTo) =
-        if (condition) interact(route) { click() } else route(parent)
+    protected fun <TRouteTo : Block> clickIf(
+        condition: Boolean,
+        route: (TParent) -> TRouteTo
+    ) = if (condition) interact(route) { click() } else route(parent)
 
     public fun select() = select(route)
-    public fun <TRouteTo : Block> select(route: (TParent) -> TRouteTo) = clickIf(!selected, route)
+    public fun <TRouteTo : Block> select(route: (TParent) -> TRouteTo) =
+        clickIf(!selected, route)
 }
