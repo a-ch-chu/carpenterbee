@@ -19,7 +19,7 @@ public open class Option<TParent : Block, TDefaultRoute : Block>(
     route: (TParent) -> TDefaultRoute
 ) : Button<TParent, TDefaultRoute>(parent, specifier, route), Selectable, HasValue {
     public override val selected: Boolean get() = read { selected }
-    public override val value: String get() = read { value!! }
+    public override val value: String get() = read { value ?: "" }
 
     protected fun <TRouteTo : Block> clickIf(
         condition: Boolean,

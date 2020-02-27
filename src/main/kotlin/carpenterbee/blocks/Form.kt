@@ -4,13 +4,15 @@
 package carpenterbee.blocks
 
 import carpenterbee.*
+import carpenterbee.functionality.getAttributeOrNull
+import carpenterbee.functionality.getAttributeOrThrow
 import carpenterbee.functionality.scriptReturn
 
 public open class Form<TParent : Block>(parent: TParent, specifier: By) :
     Section<TParent>(parent, specifier) {
 
-    public val target: String?
-        get() = tag.getAttribute("target")
+    public val target: String
+        get() = tag.getAttributeOrThrow("target")
 
     public val data: Iterable<Pair<String, String>>
         get() = tag.let {

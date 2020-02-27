@@ -5,6 +5,7 @@ package carpenterbee.controls
 
 import carpenterbee.*
 import carpenterbee.controls.traits.HasText
+import carpenterbee.functionality.getAttributeOrThrow
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Link(parent: TParent, specifier: By) =
@@ -17,6 +18,6 @@ public open class Link<TParent : Block, TDefaultRoute : Block>(
 ) : Button<TParent, TDefaultRoute>(parent, specifier, route), HasText {
     public override val text: String get() = read { text }
 
-    public val reference: String?
-        get() = read { getAttribute("href") }
+    public val reference: String
+        get() = read { getAttributeOrThrow("href") }
 }

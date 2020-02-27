@@ -5,30 +5,46 @@ package carpenterbee.functionality
 
 import carpenterbee.WebElement
 
-public fun WebElement.getDataAttribute(name: String): String? =
-    getAttribute("data-$name")
-
 public val WebElement.htmlClasses: Sequence<String>
     get() =
-        (getAttribute("class") ?: "")
+        (getAttributeOrNull("class") ?: "")
             .split(' ')
             .filterNot(String::isBlank)
             .asSequence()
 
 public val WebElement.id: String?
-    get() = getAttribute("id")
+    get() = getAttributeOrNull("id")
 
 public val WebElement.name: String?
-    get() = getAttribute("name")
+    get() = getAttributeOrNull("name")
 
 public val WebElement.onClick: String?
-    get() = getAttribute("onclick")
+    get() = getAttributeOrNull("onclick")
 
 public val WebElement.style: String?
-    get() = getAttribute("style")
+    get() = getAttributeOrNull("style")
 
 public val WebElement.title: String?
-    get() = getAttribute("title")
+    get() = getAttributeOrNull("title")
 
 public val WebElement.value: String?
-    get() = getAttribute("value")
+    get() = getAttributeOrNull("value")
+
+
+public fun WebElement.getDataAttribute(name: String): String? =
+    getAttributeOrNull("data-$name")
+
+public fun WebElement.getBoolAttribute(name: String): Boolean =
+    getAttributeOrNull(name) == "true"
+
+public fun WebElement.getAttributeOrThrow(name: String): String =
+    getAttributeOrNull(name)
+        ?: throw UnsupportedOperationException(
+            "Tried to retrieve nonexistent WebElement property $name"
+        )
+
+public fun WebElement.hasAttribute(name: String): Boolean =
+    getAttributeOrNull(name) != null
+
+public fun WebElement.getAttributeOrNull(name: String): String? =
+    getAttribute(name)

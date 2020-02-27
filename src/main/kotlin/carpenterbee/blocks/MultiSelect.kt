@@ -5,6 +5,7 @@ package carpenterbee.blocks
 
 import carpenterbee.*
 import carpenterbee.controls.options.Option
+import carpenterbee.functionality.getBoolAttribute
 
 private typealias MultiOption<TParent, TDefaultRoute> = Option<MultiSelect<TParent, TDefaultRoute>, TDefaultRoute>
 
@@ -19,7 +20,7 @@ public open class MultiSelect<TParent : Block, TDefaultRoute : Block>(
 ) : Section<TParent>(parent, specifier),
     Sequence<MultiOption<TParent, TDefaultRoute>> {
 
-    public val isMultiSelect get() = tag.getAttribute("multiple") != null
+    public val isMultiSelect: Boolean get() = tag.getBoolAttribute("multiple")
 
     public override fun iterator(): Iterator<MultiOption<TParent, TDefaultRoute>> =
         getElements(::Option, this, by.tag("option")) {

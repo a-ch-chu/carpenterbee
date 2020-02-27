@@ -26,7 +26,7 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
     public fun getAlertOrNull(): Alert? =
         try {
             session.driver.switchTo().alert()
-        } catch (e: NoAlertPresentException) {
+        } catch (_: NoAlertPresentException) {
             null
         }
 

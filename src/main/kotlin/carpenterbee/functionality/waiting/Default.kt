@@ -7,9 +7,9 @@ import kotlin.time.Duration
 import kotlin.time.seconds
 
 public object Default {
-    public const val timeoutSeconds = 3
-    public val timeout: Duration get() = timeoutSeconds.seconds
     public const val pollCount: Int = 10
+    public const val stabilityFactor: Int = 2
+    public const val timeoutSeconds: Int = 3
     public val interval: Duration get() = timeout / pollCount
-    public val stabilityFactor: Int get() = 2
+    public val timeout: Duration get() = timeoutSeconds.seconds
 }

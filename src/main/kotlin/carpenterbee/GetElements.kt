@@ -22,10 +22,11 @@ public fun <TElement : Element, TParent : Block> getElements(
     constructor(parent, ByWebElement(it))
 }
 
-public fun <TControl : Control<TParent, TDefaultRoute>,
+public fun <
+        TControl : Control<TParent, TDefaultRoute>,
         TParent : Block,
-        TDefaultRoute : Block>
-        getElements(
+        TDefaultRoute : Block
+        > getElements(
     constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TControl,
     parent: TParent,
     specifier: By,
@@ -33,10 +34,11 @@ public fun <TControl : Control<TParent, TDefaultRoute>,
 ): Sequence<TControl> =
     getElements(constructor, parent, specifier, StableWait(), route)
 
-public fun <TControl : Control<TParent, TDefaultRoute>,
+public fun <
+        TControl : Control<TParent, TDefaultRoute>,
         TParent : Block,
-        TDefaultRoute : Block>
-        getElements(
+        TDefaultRoute : Block
+        > getElements(
     constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TControl,
     parent: TParent,
     specifier: By,
