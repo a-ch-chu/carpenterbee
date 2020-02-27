@@ -8,7 +8,7 @@ import carpenterbee.controls.traits.HasText
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Link(parent: TParent, specifier: By) =
-    Link(parent, specifier, ::i)
+    Link(parent, specifier, ::toParent)
 
 public open class Link<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

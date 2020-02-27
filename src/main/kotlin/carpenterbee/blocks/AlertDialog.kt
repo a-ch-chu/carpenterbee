@@ -36,10 +36,6 @@ public class AlertDialog<TAcceptTo : Block, TDismissTo : Block>(
 
     public override val text: String get() = alert.text
 
-    public fun interact(
-        interaction: Alert.() -> Unit
-    ): AlertDialog<TAcceptTo, TDismissTo> = interact(::i, interaction)
-
     public fun <TRouteTo> interact(
         route: (AlertDialog<TAcceptTo, TDismissTo>) -> TRouteTo,
         interaction: Alert.() -> Unit
@@ -57,5 +53,5 @@ public class AlertDialog<TAcceptTo : Block, TDismissTo : Block>(
         interact(route) { dismiss() }
 
     public fun enterText(text: String): AlertDialog<TAcceptTo, TDismissTo> =
-        interact { sendKeys(text) }
+        apply { alert.sendKeys(text) }
 }

@@ -15,7 +15,7 @@ public fun <TParent : Block, TRouteTo : Block> Sequence<Response<TParent, *>>.se
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Response(parent: TParent, specifier: By) =
-    Response(parent, specifier, ::i)
+    Response(parent, specifier, ::toParent)
 
 public open class Response<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

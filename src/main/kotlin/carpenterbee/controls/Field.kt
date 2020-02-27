@@ -9,7 +9,7 @@ import carpenterbee.functionality.value
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Field(parent: TParent, specifier: By) =
-    Field(parent, specifier, ::i)
+    Field(parent, specifier, ::toParent)
 
 public open class Field<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

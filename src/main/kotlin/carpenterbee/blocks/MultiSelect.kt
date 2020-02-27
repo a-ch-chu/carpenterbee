@@ -10,7 +10,7 @@ private typealias MultiOption<TParent, TDefaultRoute> = Option<MultiSelect<TPare
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> MultiSelect(parent: TParent, specifier: By) =
-    MultiSelect(parent, specifier, ::i)
+    MultiSelect(parent, specifier, ::toParent)
 
 public open class MultiSelect<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,

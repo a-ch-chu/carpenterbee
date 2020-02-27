@@ -7,7 +7,7 @@ import carpenterbee.*
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Button(parent: TParent, specifier: By) =
-    Button(parent, specifier, ::i)
+    Button(parent, specifier, ::toParent)
 
 public open class Button<TParent : Block, TDefaultRoute : Block>(
     parent: TParent,
