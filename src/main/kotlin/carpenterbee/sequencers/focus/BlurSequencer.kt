@@ -3,7 +3,7 @@
 
 package carpenterbee.sequencers.focus
 
-import carpenterbee.functionality.voidProperty
+import carpenterbee.construction.javascript.voidProperty
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.WebElement
 

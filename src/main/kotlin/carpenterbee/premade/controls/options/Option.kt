@@ -1,13 +1,11 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.controls.options
+package carpenterbee.premade.controls.options
 
 import carpenterbee.*
-import carpenterbee.controls.Button
-import carpenterbee.controls.traits.HasValue
-import carpenterbee.controls.traits.Selectable
-import carpenterbee.functionality.value
+import carpenterbee.premade.HasValue
+import carpenterbee.premade.controls.Button
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Option(parent: TParent, specifier: By) =
@@ -17,9 +15,10 @@ public open class Option<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
     route: TParent.() -> TDefaultTo
-) : Button<TParent, TDefaultTo>(parent, specifier, route), Selectable, HasValue {
-    public override val selected: Boolean get() = read { selected }
-    public override val value: String get() = read { value ?: "" }
+) : Button<TParent, TDefaultTo>(parent, specifier, route),
+    HasValue {
+    public val selected: Boolean get() = read { selected }
+    public override val value: String get() = read(Tag.value)
 
     protected fun <TRouteTo : Block> clickIf(
         condition: Boolean,

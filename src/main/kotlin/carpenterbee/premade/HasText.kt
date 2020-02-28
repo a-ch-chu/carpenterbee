@@ -1,8 +1,8 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.controls.traits
+package carpenterbee.premade
 
-public interface Selectable {
-    public val selected: Boolean
+public interface HasText {
+    public val text: String
 }

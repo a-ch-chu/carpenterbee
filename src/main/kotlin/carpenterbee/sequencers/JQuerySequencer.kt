@@ -3,7 +3,7 @@
 
 package carpenterbee.sequencers
 
-import carpenterbee.functionality.scriptReturn
+import carpenterbee.construction.javascript.scriptReturn
 import carpenterbee.functionality.waiting.Wait
 import carpenterbee.WebElement
 

@@ -1,17 +1,16 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.blocks
+package carpenterbee.premade.sections
 
 import carpenterbee.*
-import carpenterbee.controls.traits.HasText
-import carpenterbee.functionality.getAttributeOrThrow
+import carpenterbee.premade.HasText
 
 public open class Image<TParent : Block>(parent: TParent, specifier: By) :
     Section<TParent>(parent, specifier), HasText {
     public val source: String
-        get() = tag.getAttributeOrThrow("src")
+        get() = readTag("src")
 
     override val text: String
-        get() = tag.getAttributeOrThrow("alt")
+        get() = readTag("alt")
 }

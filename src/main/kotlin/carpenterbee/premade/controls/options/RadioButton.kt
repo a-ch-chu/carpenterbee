@@ -1,10 +1,11 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.controls.options
+package carpenterbee.premade.controls.options
 
 import carpenterbee.*
-import carpenterbee.controls.traits.HasText
+import carpenterbee.construction.getLabel
+import carpenterbee.premade.HasText
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> RadioButton(parent: TParent, specifier: By) =
@@ -14,6 +15,7 @@ public open class RadioButton<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
     route: TParent.() -> TDefaultTo
-) : Response<TParent, TDefaultTo>(parent, specifier, route), HasText {
+) : Selectable<TParent, TDefaultTo>(parent, specifier, route),
+    HasText {
     public override val text: String get() = getLabel()
 }

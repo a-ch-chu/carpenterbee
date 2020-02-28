@@ -4,7 +4,6 @@
 package carpenterbee.functionality
 
 import carpenterbee.*
-import carpenterbee.extensions.getOrNull
 import carpenterbee.functionality.waiting.StableWait
 import carpenterbee.functionality.waiting.Wait
 import org.openqa.selenium.NotFoundException
@@ -22,7 +21,7 @@ public object TagFinder {
             )
 
     public fun findOrNull(element: HasParent<*>): WebElement? =
-        findOrNull(element) { element.getOrNull() }
+        findOrNull(element) { element.getTagOrNull() }
 
     public fun find(element: HasParent<*>): WebElement =
         findOrNull(element)

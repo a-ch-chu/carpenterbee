@@ -1,10 +1,9 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.blocks
+package carpenterbee.premade
 
 import carpenterbee.*
-import carpenterbee.controls.traits.HasText
 import carpenterbee.functionality.HasFindTimeout
 import carpenterbee.functionality.TagFinder
 import org.openqa.selenium.Alert

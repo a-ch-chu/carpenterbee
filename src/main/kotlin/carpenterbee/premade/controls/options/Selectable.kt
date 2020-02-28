@@ -1,24 +1,24 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.controls.options
+package carpenterbee.premade.controls.options
 
 import carpenterbee.*
 
-public fun <TDefaultTo : Block> Sequence<Response<*, TDefaultTo>>.setAll(
+public fun <TDefaultTo : Block> Sequence<Selectable<*, TDefaultTo>>.setAll(
     selected: Boolean
 ): TDefaultTo = map { it.setTo(selected) }.last()
 
-public fun <TParent : Block, TRouteTo : Block> Sequence<Response<TParent, *>>.setAll(
+public fun <TParent : Block, TRouteTo : Block> Sequence<Selectable<TParent, *>>.setAll(
     selected: Boolean,
     route: (TParent) -> TRouteTo
 ) = map { it.setTo(selected, route) }.last()
 
 @Suppress("FunctionName") // Factory function
-public fun <TParent : Block> Response(parent: TParent, specifier: By) =
-    Response(parent, specifier, ::toParent)
+public fun <TParent : Block> Selectable(parent: TParent, specifier: By) =
+    Selectable(parent, specifier, ::toParent)
 
-public open class Response<TParent : Block, TDefaultTo : Block>(
+public open class Selectable<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
     route: TParent.() -> TDefaultTo

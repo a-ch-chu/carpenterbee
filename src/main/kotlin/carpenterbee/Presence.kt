@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.extensions
+package carpenterbee
 
 import carpenterbee.functionality.HasParent
 import carpenterbee.functionality.TagFinder

@@ -1,18 +1,16 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.blocks
+package carpenterbee.premade.sections
 
 import carpenterbee.*
-import carpenterbee.functionality.getAttributeOrNull
-import carpenterbee.functionality.getAttributeOrThrow
-import carpenterbee.functionality.scriptReturn
+import carpenterbee.construction.javascript.scriptReturn
 
 public open class Form<TParent : Block>(parent: TParent, specifier: By) :
     Section<TParent>(parent, specifier) {
 
     public val target: String
-        get() = tag.getAttributeOrThrow("target")
+        get() = readTag("target")
 
     public val data: Iterable<Pair<String, String>>
         get() = tag.let {

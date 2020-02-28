@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.controls
+package carpenterbee.premade.controls
 
 import carpenterbee.*
 
