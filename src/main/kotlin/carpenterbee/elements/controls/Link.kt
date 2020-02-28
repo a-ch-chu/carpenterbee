@@ -1,10 +1,10 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.premade.controls
+package carpenterbee.elements.controls
 
 import carpenterbee.*
-import carpenterbee.premade.HasText
+import carpenterbee.elements.HasText
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Link(parent: TParent, specifier: By) =

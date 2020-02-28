@@ -1,11 +1,11 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.premade.controls.options
+package carpenterbee.elements.controls.options
 
 import carpenterbee.*
-import carpenterbee.premade.HasValue
-import carpenterbee.premade.controls.Button
+import carpenterbee.elements.HasValue
+import carpenterbee.elements.controls.Button
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Option(parent: TParent, specifier: By) =

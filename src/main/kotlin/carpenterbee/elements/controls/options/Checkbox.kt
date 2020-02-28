@@ -1,11 +1,11 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.premade.controls.options
+package carpenterbee.elements.controls.options
 
 import carpenterbee.*
 import carpenterbee.construction.getLabel
-import carpenterbee.premade.HasText
+import carpenterbee.elements.HasText
 
 @Suppress("FunctionName") // Factory function
 public fun <TParent : Block> Checkbox(parent: TParent, specifier: By) =

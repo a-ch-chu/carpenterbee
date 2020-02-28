@@ -1,7 +1,7 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.premade.sections
+package carpenterbee.elements.sections
 
 import carpenterbee.*
 import carpenterbee.construction.javascript.scriptReturn

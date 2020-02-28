@@ -1,10 +1,10 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.premade.sections
+package carpenterbee.elements.sections
 
 import carpenterbee.*
-import carpenterbee.premade.controls.options.Option
+import carpenterbee.elements.controls.options.Option
 
 private typealias BoxOption<TParent, TDefaultTo> =
         Option<SelectBox<TParent, TDefaultTo>, TDefaultTo>

@@ -1,8 +1,8 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.premade
+package carpenterbee.elements
 
-public interface HasText {
-    public val text: String
+public interface HasValue {
+    public val value: String
 }
