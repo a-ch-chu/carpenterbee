@@ -5,9 +5,9 @@ package carpenterbee.controls.options
 
 import carpenterbee.*
 
-public fun <TDefaultRoute : Block> Sequence<Response<*, TDefaultRoute>>.setAll(
+public fun <TDefaultTo : Block> Sequence<Response<*, TDefaultTo>>.setAll(
     selected: Boolean
-): TDefaultRoute = map { it.setTo(selected) }.last()
+): TDefaultTo = map { it.setTo(selected) }.last()
 
 public fun <TParent : Block, TRouteTo : Block> Sequence<Response<TParent, *>>.setAll(
     selected: Boolean,
@@ -18,11 +18,11 @@ public fun <TParent : Block, TRouteTo : Block> Sequence<Response<TParent, *>>.se
 public fun <TParent : Block> Response(parent: TParent, specifier: By) =
     Response(parent, specifier, ::toParent)
 
-public open class Response<TParent : Block, TDefaultRoute : Block>(
+public open class Response<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
-) : Option<TParent, TDefaultRoute>(parent, specifier, route) {
+    route: TParent.() -> TDefaultTo
+) : Option<TParent, TDefaultTo>(parent, specifier, route) {
     public fun deselect() = select(route)
     public fun <TRouteTo : Block> deselect(route: (TParent) -> TRouteTo) =
         setTo(false, route)

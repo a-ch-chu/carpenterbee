@@ -11,11 +11,11 @@ import carpenterbee.functionality.value
 public fun <TParent : Block> Field(parent: TParent, specifier: By) =
     Field(parent, specifier, ::toParent)
 
-public open class Field<TParent : Block, TDefaultRoute : Block>(
+public open class Field<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
-) : Control<TParent, TDefaultRoute>(parent, specifier, route), HasText {
+    route: TParent.() -> TDefaultTo
+) : Control<TParent, TDefaultTo>(parent, specifier, route), HasText {
     public override val text: String get() = read { value ?: "" }
 
     public fun enter(text: Any?) = enter(text, route)

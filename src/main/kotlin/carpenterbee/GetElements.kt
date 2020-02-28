@@ -22,28 +22,20 @@ public fun <TElement : Element, TParent : Block> getElements(
     constructor(parent, ByWebElement(it))
 }
 
-public fun <
-        TControl : Control<TParent, TDefaultRoute>,
-        TParent : Block,
-        TDefaultRoute : Block
-        > getElements(
-    constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TControl,
+public fun <TControl : Element, TParent : Block, TDefaultTo : Block> getElements(
+    constructor: (TParent, By, TParent.() -> TDefaultTo) -> TControl,
     parent: TParent,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
+    route: TParent.() -> TDefaultTo
 ): Sequence<TControl> =
     getElements(constructor, parent, specifier, StableWait(), route)
 
-public fun <
-        TControl : Control<TParent, TDefaultRoute>,
-        TParent : Block,
-        TDefaultRoute : Block
-        > getElements(
-    constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TControl,
+public fun <TControl : Element, TParent : Block, TDefaultTo : Block> getElements(
+    constructor: (TParent, By, TParent.() -> TDefaultTo) -> TControl,
     parent: TParent,
     specifier: By,
     wait: StableWait,
-    route: (TParent) -> TDefaultRoute
+    route: TParent.() -> TDefaultTo
 ): Sequence<TControl> = parent.mapChildren(specifier, wait) {
     constructor(parent, ByWebElement(it), route)
 }

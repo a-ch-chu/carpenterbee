@@ -23,10 +23,10 @@ internal fun <TOption : Option<*, *>> TOption.getLabel(): String {
     return label?.text ?: throw noLabelException
 }
 
-public open class Checkbox<TParent : Block, TDefaultRoute : Block>(
+public open class Checkbox<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
-) : Option<TParent, TDefaultRoute>(parent, specifier, route), HasText {
+    route: TParent.() -> TDefaultTo
+) : Option<TParent, TDefaultTo>(parent, specifier, route), HasText {
     public override val text get() = getLabel()
 }

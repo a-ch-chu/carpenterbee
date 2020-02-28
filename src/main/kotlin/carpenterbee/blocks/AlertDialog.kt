@@ -11,8 +11,8 @@ import org.openqa.selenium.Alert
 import org.openqa.selenium.NoAlertPresentException
 
 @Suppress("FunctionName") // Factory function
-public fun <TDefaultRoute : Block> AlertDialog(
-    session: Session, route: (Block) -> TDefaultRoute
+public fun <TDefaultTo : Block> AlertDialog(
+    session: Session, route: (Block) -> TDefaultTo
 ) = AlertDialog(session, route, route)
 
 public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(

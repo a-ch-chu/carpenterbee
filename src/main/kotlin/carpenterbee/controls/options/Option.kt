@@ -13,11 +13,11 @@ import carpenterbee.functionality.value
 public fun <TParent : Block> Option(parent: TParent, specifier: By) =
     Option(parent, specifier, ::toParent)
 
-public open class Option<TParent : Block, TDefaultRoute : Block>(
+public open class Option<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
-) : Button<TParent, TDefaultRoute>(parent, specifier, route), Selectable, HasValue {
+    route: TParent.() -> TDefaultTo
+) : Button<TParent, TDefaultTo>(parent, specifier, route), Selectable, HasValue {
     public override val selected: Boolean get() = read { selected }
     public override val value: String get() = read { value ?: "" }
 

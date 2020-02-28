@@ -11,11 +11,11 @@ import carpenterbee.functionality.getAttributeOrThrow
 public fun <TParent : Block> Link(parent: TParent, specifier: By) =
     Link(parent, specifier, ::toParent)
 
-public open class Link<TParent : Block, TDefaultRoute : Block>(
+public open class Link<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
-) : Button<TParent, TDefaultRoute>(parent, specifier, route), HasText {
+    route: TParent.() -> TDefaultTo
+) : Button<TParent, TDefaultTo>(parent, specifier, route), HasText {
     public override val text: String get() = read { text }
 
     public val reference: String

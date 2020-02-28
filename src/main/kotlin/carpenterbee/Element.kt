@@ -48,10 +48,10 @@ public abstract class Section<TParent : Block>(
     public val tag: WebElement get() = TagFinder.find(this)
 }
 
-public abstract class Control<TParent : Block, TDefaultRoute : Block>(
+public abstract class Control<TParent : Block, TDefaultTo : Block>(
     public override val parent: TParent,
     public override val specifier: By,
-    protected val route: (TParent) -> TDefaultRoute
+    protected val route: TParent.() -> TDefaultTo
 ) : Element(parent.session), HasParent<TParent> {
     public override val scope: SearchContext? get() = getOrNull()
 
@@ -60,11 +60,11 @@ public abstract class Control<TParent : Block, TDefaultRoute : Block>(
     private val tag: WebElement get() = TagFinder.find(this)
 
     public fun <TRouteTo : Block> interact(
-        route: (TParent) -> TRouteTo,
+        route: TParent.() -> TRouteTo,
         interaction: WebElement.() -> Unit
     ): TRouteTo {
         sequencers.sequence(tag, interaction)
-        return route(parent)
+        return parent.route()
     }
 
     public fun <T> read(retriever: WebElement.() -> T): T = retriever(tag)

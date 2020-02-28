@@ -9,11 +9,11 @@ import carpenterbee.*
 public fun <TParent : Block> Button(parent: TParent, specifier: By) =
     Button(parent, specifier, ::toParent)
 
-public open class Button<TParent : Block, TDefaultRoute : Block>(
+public open class Button<TParent : Block, TDefaultTo : Block>(
     parent: TParent,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
-) : Control<TParent, TDefaultRoute>(parent, specifier, route) {
+    route: TParent.() -> TDefaultTo
+) : Control<TParent, TDefaultTo>(parent, specifier, route) {
     public fun click() = click(route)
     public fun <TRouteTo : Block> click(route: (TParent) -> TRouteTo) =
         interact(route) { click() }

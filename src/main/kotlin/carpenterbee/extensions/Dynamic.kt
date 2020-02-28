@@ -7,24 +7,15 @@ import carpenterbee.*
 
 public fun <TElement : Element, TParent : Block> TParent.dynamic(
     constructor: (TParent) -> TElement
-) = constructor(this)
+): TElement = constructor(this)
 
 public fun <TElement : Element, TParent : Block> TParent.dynamic(
     constructor: (TParent, By) -> TElement,
     specifier: By
-) = constructor(this, specifier)
+): TElement = constructor(this, specifier)
 
-public fun <TElement : Element, TParent : Block, TDefaultRoute : Block> TParent.dynamic(
-    constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TElement,
+public fun <TElement : Element, TParent : Block, TDefaultTo : Block> TParent.dynamic(
+    constructor: (TParent, By, TParent.() -> TDefaultTo) -> TElement,
     specifier: By,
-    route: (TParent) -> TDefaultRoute
-) = constructor(this, specifier, route)
-
-public fun <
-        TControl : Control<TParent, TDefaultRoute>,
-        TParent : Block, TDefaultRoute : Block
-        > TParent.dynamic(
-    constructor: (TParent, By, (TParent) -> TDefaultRoute) -> TControl,
-    specifier: By,
-    route: (TParent) -> TDefaultRoute
-) = constructor(this, specifier, route)
+    route: TParent.() -> TDefaultTo
+): TElement = constructor(this, specifier, route)
