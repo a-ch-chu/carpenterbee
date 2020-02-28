@@ -12,7 +12,9 @@ import carpenterbee.functionality.TagFinder
 import carpenterbee.functionality.specifiers.Specifiers
 
 private val noLabelException
-    get() = IllegalStateException("Attempted to find label for unlabelled element.")
+    get() = UnsupportedOperationException(
+        "Attempted to find label for unlabelled element."
+    )
 
 internal fun <TOption : Option<*, *>> TOption.getLabel(): String {
     val labelId = this.read { id } ?: throw noLabelException

@@ -20,10 +20,14 @@ public class Session(val driver: WebDriver) : Closeable {
     }
 
     public inline fun <reified TElement : Element> last(): TElement =
-        lastOrNull()
-            ?: throw IllegalStateException(
-                "Couldn't find any recent element of the given type."
-            )
+        lastOrNull() ?: throw IllegalStateException(
+            """
+            Couldn't find any recent element of type ${TElement::class.simpleName}.
+            Last page was ${lastPage?.let { it::class.simpleName }}.
+            Last block was ${lastBlock?.let { it::class.simpleName }}.
+            Last element was ${lastElement?.let { it::class.simpleName }}.
+            """.trimIndent()
+        )
 
     public inline fun <reified TElement : Element> lastOrNull(): TElement? =
         when {
