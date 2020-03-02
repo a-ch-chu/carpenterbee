@@ -5,11 +5,6 @@ package carpenterbee.sequencers
 
 import carpenterbee.WebElement
 
-public enum class Stacking {
-    FIFO,
-    FILO
-}
-
 public class SequencerList private constructor(
     private val wrappedList: MutableList<Sequencer>,
     public val postOrder: Stacking = Stacking.FIFO
@@ -27,5 +22,10 @@ public class SequencerList private constructor(
             Stacking.FIFO -> wrappedList.postInteract()
             Stacking.FILO -> wrappedList.reversed().postInteract()
         }
+    }
+
+    public enum class Stacking {
+        FIFO,
+        FILO
     }
 }

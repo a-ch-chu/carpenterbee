@@ -20,10 +20,10 @@ public object TagFinder {
                 }
             )
 
-    public fun findOrNull(element: HasParent<*>): WebElement? =
+    public fun findOrNull(element: IsFindable<*>): WebElement? =
         findOrNull(element) { element.getTagOrNull() }
 
-    public fun find(element: HasParent<*>): WebElement =
+    public fun find(element: IsFindable<*>): WebElement =
         findOrNull(element)
             ?: throw NotFoundException(
                 element.let {
@@ -38,11 +38,11 @@ public object TagFinder {
         wait: Wait = Wait()
     ): Sequence<WebElement> =
         wait.toGet(
-            { scope?.findElements(specifier) },
-            { it?.size ?: 0 > 0 })?.asSequence()
-            ?: throw NotFoundException(
-                "Couldn't find any elements $specifier after ${wait.timeout}."
-            )
+            { scope.getTags(specifier) },
+            { it!!.count() > 0 }
+        ) ?: throw NotFoundException(
+            "Couldn't find any elements $specifier after ${wait.timeout}."
+        )
 
     public fun findStable(
         scope: SearchContext?,
@@ -50,10 +50,9 @@ public object TagFinder {
         wait: StableWait = StableWait()
     ): Sequence<WebElement> =
         wait.toGet(
-            { scope?.findElements(specifier) },
-            { map { it?.size ?: 0 }.distinct().size == 1 }
-        )?.asSequence()
-            ?: throw NotFoundException(
-                "Couldn't find stable set of elements $specifier after ${wait.timeout}."
-            )
+            { scope.getTags(specifier) },
+            { map { it!!.count() }.distinct().size == 1 }
+        ) ?: throw NotFoundException(
+            "Couldn't find stable set of elements $specifier after ${wait.timeout}."
+        )
 }

@@ -39,7 +39,6 @@ public class Wait(
         condition: (T?) -> Boolean = { it != null }
     ): T? = runBlocking { toGetAsync(retrieve, condition) }
 
-
     public suspend fun untilAsync(condition: () -> Boolean): Boolean =
         withTimeoutOrNull(timeout) {
             pollFlow(condition)

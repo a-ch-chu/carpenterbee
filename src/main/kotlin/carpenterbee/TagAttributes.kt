@@ -13,13 +13,14 @@ public object Tag {
 }
 
 public val WebElement.classes: Sequence<String>
-    get() =
-        (getAttrOrNull("class") ?: "")
-            .split(' ')
-            .filterNot(String::isBlank)
-            .asSequence()
+    get() = getAttrOrNull("class")
+        ?.run {
+            this.split(' ')
+                .filterNot(String::isBlank)
+                .asSequence()
+        } ?: emptySequence()
 
-public fun WebElement.getAttr(name: String): String =
+public fun WebElement.getAttrOrThrow(name: String): String =
     getAttrOrNull(name)
         ?: throw UnsupportedOperationException(
             "Tried to retrieve nonexistent WebElement attribute $name"

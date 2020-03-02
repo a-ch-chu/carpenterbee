@@ -14,4 +14,4 @@ public typealias Nav = WebDriver.Navigation
 internal typealias SearchContext = SearchContext
 internal typealias WebElement = WebElement
 
-public fun <T : Block> toParent(parent: T) = parent
+public fun <T : Block> toParent(parent: T): T = parent

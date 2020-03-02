@@ -6,7 +6,7 @@ package carpenterbee.elements.sections
 import carpenterbee.*
 import carpenterbee.elements.HasText
 
-public class TextSection<TParent : Block>(parent: TParent, specifier: By) :
+public open class TextSection<TParent : Block>(parent: TParent, specifier: By) :
     Section<TParent>(parent, specifier), HasText {
 
     override val text: String

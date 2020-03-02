@@ -40,10 +40,10 @@ public abstract class Page(session: Session) : Block(session) {
 public abstract class Section<TParent : Block>(
     public override val parent: TParent,
     public override val specifier: By
-) : Block(parent.session), HasParent<TParent> {
+) : Block(parent.session), IsFindable<TParent> {
     public override val scope: SearchContext? get() = getTagOrNull()
 
-    public fun readTag(name: String): String = tag.getAttr(name)
+    public fun readTag(name: String): String = tag.getAttrOrThrow(name)
     public val tag: WebElement get() = TagFinder.find(this)
 }
 
@@ -51,7 +51,7 @@ public abstract class Control<TParent : Block, TDefaultTo : Block>(
     public override val parent: TParent,
     public override val specifier: By,
     protected val route: TParent.() -> TDefaultTo
-) : Element(parent.session), HasParent<TParent> {
+) : Element(parent.session), IsFindable<TParent> {
     public override val scope: SearchContext? get() = getTagOrNull()
 
     public val sequencers: SequencerList = SequencerList()
@@ -66,6 +66,6 @@ public abstract class Control<TParent : Block, TDefaultTo : Block>(
         return parent.route()
     }
 
-    public fun read(name: String): String = read { getAttr(name) }
+    public fun read(name: String): String = read { getAttrOrThrow(name) }
     public fun <T> read(retriever: WebElement.() -> T): T = retriever(tag)
 }
