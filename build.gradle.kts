@@ -1,7 +1,7 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.3.70"
     `java-library`
     `maven-publish`
 }
@@ -17,14 +17,13 @@ repositories {
 dependencies {
     api(kotlin("stdlib-jdk8"))
     api("org.seleniumhq.selenium", "selenium-java", "4.0.0-alpha-4")
-    implementation(kotlin("reflect"))
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.3.3")
 }
 
 val compilerArgs = listOf(
     "-XXLanguage:+NewInference",
-    "-Xuse-experimental=kotlin.time.ExperimentalTime",
-    "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+    "-Xopt-in=kotlin.time.ExperimentalTime",
+    "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
 )
 
 tasks {

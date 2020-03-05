@@ -4,23 +4,36 @@
 package carpenterbee.elements
 
 import carpenterbee.*
-import carpenterbee.functionality.HasFindTimeout
+import carpenterbee.functionality.interfaces.HasFindTimeout
 import carpenterbee.functionality.TagFinder
 import org.openqa.selenium.Alert
 import org.openqa.selenium.NoAlertPresentException
 
 @Suppress("FunctionName") // Factory function
 public fun <TDefaultTo : Block> AlertDialog(
-    session: Session, route: (Block) -> TDefaultTo
-) = AlertDialog(session, route, route)
+    route: (Block) -> TDefaultTo
+): Block.() -> AlertDialog<TDefaultTo, TDefaultTo> = {
+    AlertDialog(this, route, route)
+}
+
+@Suppress("FunctionName") // Factory function
+public fun <TAcceptTo : Block, TDismissTo : Block> AlertDialog(
+    acceptRoute: (Block) -> TAcceptTo,
+    dismissRoute: (Block) -> TDismissTo
+): Block.() -> AlertDialog<TAcceptTo, TDismissTo> = {
+    AlertDialog(this, acceptRoute, dismissRoute)
+}
 
 public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
-    session: Session,
+    host: Block,
     private val acceptRoute: (Block) -> TAcceptRoute,
     private val dismissRoute: (Block) -> TDismissRoute
-) : Page(session), HasFindTimeout, HasText {
+) : Page(host.session), HasFindTimeout, HasText {
     public val alert: Alert
         get() = TagFinder.find(this, ::getAlertOrNull)
+
+    public override val name =
+        "${this::class.simpleName} from ${host::class.simpleName}"
 
     public fun getAlertOrNull(): Alert? =
         try {

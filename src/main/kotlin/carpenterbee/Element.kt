@@ -4,13 +4,17 @@
 package carpenterbee
 
 import carpenterbee.functionality.*
+import carpenterbee.functionality.interfaces.HasName
+import carpenterbee.functionality.interfaces.IsFindable
 import carpenterbee.functionality.specifiers.Specifiers
 import carpenterbee.sequencers.SequencerList
 
-public sealed class Element(val session: Session) {
+public sealed class Element(val session: Session) : HasName {
     init {
         session.track(this)
     }
+
+    public override val name: String = nameOfInitialisingProperty()
 
     public abstract val scope: SearchContext?
 

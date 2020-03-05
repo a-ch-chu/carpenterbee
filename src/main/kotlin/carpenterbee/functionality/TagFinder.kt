@@ -4,6 +4,8 @@
 package carpenterbee.functionality
 
 import carpenterbee.*
+import carpenterbee.functionality.interfaces.HasFindTimeout
+import carpenterbee.functionality.interfaces.IsFindable
 import carpenterbee.functionality.waiting.StableWait
 import carpenterbee.functionality.waiting.Wait
 import org.openqa.selenium.NotFoundException
@@ -15,9 +17,7 @@ public object TagFinder {
     public fun <T> find(element: HasFindTimeout, fetch: () -> T?): T =
         findOrNull(element, fetch)
             ?: throw NotFoundException(
-                element.let {
-                    "Couldn't find ${it::class.simpleName} after ${it.findTimeout}"
-                }
+                element.run { "Couldn't find $name after $findTimeout" }
             )
 
     public fun findOrNull(element: IsFindable<*>): WebElement? =
@@ -26,10 +26,7 @@ public object TagFinder {
     public fun find(element: IsFindable<*>): WebElement =
         findOrNull(element)
             ?: throw NotFoundException(
-                element.let {
-                    "Couldn't find ${it::class.simpleName} ${it.specifier} after" +
-                            " ${it.findTimeout}."
-                }
+                element.run { "Couldn't find $name $specifier after $findTimeout." }
             )
 
     public fun findSome(

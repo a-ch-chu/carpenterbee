@@ -4,6 +4,7 @@
 package carpenterbee.functionality
 
 import carpenterbee.*
+import carpenterbee.functionality.interfaces.IsFindable
 
 public fun SearchContext?.getTagOrNull(specifier: By): WebElement? =
     this?.run { findElements(specifier).firstOrNull() }
