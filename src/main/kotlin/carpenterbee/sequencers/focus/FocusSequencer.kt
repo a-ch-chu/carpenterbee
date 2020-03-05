@@ -3,13 +3,13 @@
 
 package carpenterbee.sequencers.focus
 
-import carpenterbee.construction.javascript.voidProperty
 import carpenterbee.sequencers.Sequencer
 import carpenterbee.WebElement
+import carpenterbee.construction.JavaScript.voidMember
 
 public object FocusSequencer : Sequencer {
     public override fun preInteract(tag: WebElement) {
-        tag.voidProperty("focus()")
+        tag.voidMember("focus()")
     }
 
     public override fun postInteract(tag: WebElement) {}

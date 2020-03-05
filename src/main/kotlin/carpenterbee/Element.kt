@@ -14,7 +14,7 @@ public sealed class Element(val session: Session) : HasName {
         session.track(this)
     }
 
-    public override val name: String = nameOfInitialisingProperty()
+    public override val name: String = deriveName()
 
     public abstract val scope: SearchContext?
 

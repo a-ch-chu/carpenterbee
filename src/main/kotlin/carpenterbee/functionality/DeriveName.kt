@@ -5,7 +5,7 @@ package carpenterbee.functionality
 
 private const val getterPrefix = "get"
 
-public fun Any.nameOfInitialisingProperty(): String =
+public fun Any.deriveName(): String =
     Thread.currentThread().stackTrace.drop(1)
         .map { it.methodName ?: "" }
         .firstOrNull { it.startsWith(getterPrefix) }

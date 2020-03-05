@@ -4,7 +4,7 @@
 package carpenterbee.elements.sections
 
 import carpenterbee.*
-import carpenterbee.construction.javascript.scriptReturn
+import carpenterbee.construction.JavaScript.scriptReturn
 
 public open class Form<TParent : Block>(parent: TParent, specifier: By) :
     Section<TParent>(parent, specifier) {
