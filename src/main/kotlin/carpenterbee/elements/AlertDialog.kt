@@ -6,6 +6,7 @@ package carpenterbee.elements
 import carpenterbee.*
 import carpenterbee.functionality.interfaces.HasFindTimeout
 import carpenterbee.functionality.TagFinder
+import carpenterbee.functionality.rootPageName
 import org.openqa.selenium.Alert
 import org.openqa.selenium.NoAlertPresentException
 
@@ -32,8 +33,7 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
     public val alert: Alert
         get() = TagFinder.find(this, ::getAlertOrNull)
 
-    public override val name =
-        "${this::class.simpleName} from ${host::class.simpleName}"
+    public override val name = "AlertDialog on ${host.rootPageName()}"
 
     public fun getAlertOrNull(): Alert? =
         try {
