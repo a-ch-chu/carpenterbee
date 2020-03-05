@@ -7,11 +7,12 @@ import carpenterbee.Block
 import carpenterbee.By
 import carpenterbee.functionality.TagFinder
 
-public interface IsFindable<TParent : Block> : HasParent<TParent>,
-    HasFindTimeout {
+public interface IsFindable<TParent : Block> :
+    HasParent<TParent>,
+    HasFindTimeout,
+    MayBePresent {
     public val specifier: By
 
-    public val present: Boolean get() = !absent
-    public val absent: Boolean
-        get() = TagFinder.findOrNull(this) == null
+    public override val present: Boolean
+        get() = TagFinder.findOrNull(this) != null
 }

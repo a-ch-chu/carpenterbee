@@ -6,6 +6,7 @@ package carpenterbee.elements
 import carpenterbee.*
 import carpenterbee.functionality.interfaces.HasFindTimeout
 import carpenterbee.functionality.TagFinder
+import carpenterbee.functionality.interfaces.MayBePresent
 import carpenterbee.functionality.rootPageName
 import org.openqa.selenium.Alert
 import org.openqa.selenium.NoAlertPresentException
@@ -29,11 +30,12 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
     host: Block,
     private val acceptRoute: (Block) -> TAcceptRoute,
     private val dismissRoute: (Block) -> TDismissRoute
-) : Page(host.session), HasFindTimeout, HasText {
+) : Page(host.session), HasFindTimeout, HasText, MayBePresent {
+    public override val name = "AlertDialog on ${host.rootPageName()}"
+    public override val scope: SearchContext? get() = null
+
     public val alert: Alert
         get() = TagFinder.find(this, ::getAlertOrNull)
-
-    public override val name = "AlertDialog on ${host.rootPageName()}"
 
     public fun getAlertOrNull(): Alert? =
         try {
@@ -42,9 +44,8 @@ public class AlertDialog<TAcceptRoute : Block, TDismissRoute : Block>(
             null
         }
 
-    public val present: Boolean get() = !absent
-    public val absent: Boolean
-        get() = TagFinder.findOrNull(this, ::getAlertOrNull) == null
+    public override val present: Boolean
+        get() = TagFinder.findOrNull(this, ::getAlertOrNull) != null
 
     public override val text: String get() = alert.text
 
