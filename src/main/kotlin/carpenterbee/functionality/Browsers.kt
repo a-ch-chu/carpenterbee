@@ -16,11 +16,13 @@ import org.openqa.selenium.safari.SafariDriver
 object Browsers {
     private fun <TDriver : WebDriver> create(
         constructor: () -> TDriver
-    ): () -> TDriver = { -> constructor().apply { manage().window().maximize() } }
+    ): () -> TDriver = { ->
+        constructor().apply { manage().window().maximize() }
+    }
 
     public val chrome get() = create(::ChromeDriver)
     public val firefox get() = create(::FirefoxDriver)
-    public val internetExplorer get() = create(::InternetExplorerDriver)
+    public val ie get() = create(::InternetExplorerDriver)
     public val microsoftEdge get() = create(::EdgeDriver)
     public val opera get() = create(::OperaDriver)
     public val safari get() = create(::SafariDriver)
@@ -29,6 +31,8 @@ object Browsers {
 }
 
 public object HeadlessBrowsers {
-    public val chrome: () -> ChromeDriver get() = { ChromeDriver(ChromeOptions().setHeadless((true))) }
-    public val firefox: () -> FirefoxDriver get() = { FirefoxDriver(FirefoxOptions().setHeadless(true)) }
+    public val chrome: () -> ChromeDriver
+        get() = { ChromeDriver(ChromeOptions().setHeadless((true))) }
+    public val firefox: () -> FirefoxDriver
+        get() = { FirefoxDriver(FirefoxOptions().setHeadless(true)) }
 }
