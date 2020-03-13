@@ -1,19 +1,20 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.sequencers.staleness
+package carpenterbee.sequencers
 
-import carpenterbee.functionality.waiting.Wait
-import carpenterbee.sequencers.Sequencer
-import carpenterbee.sequencers.SequencerException
 import carpenterbee.WebElement
+import carpenterbee.functionality.waiting.Wait
 import org.openqa.selenium.StaleElementReferenceException
 
-public open class TransformsSequencer(public val wait: Wait = Wait()) : Sequencer {
-    protected lateinit var stored: WebElement
+public class Changes(
+    private val readTag: (() -> WebElement)? = null,
+    public val wait: Wait = Wait()
+) : Sequencer {
+    private lateinit var stored: WebElement
 
     public override fun preInteract(tag: WebElement) {
-        stored = tag
+        stored = readTag?.invoke() ?: tag
     }
 
     public override fun postInteract(tag: WebElement) {

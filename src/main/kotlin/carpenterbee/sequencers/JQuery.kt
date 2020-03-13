@@ -7,7 +7,7 @@ import carpenterbee.functionality.waiting.Wait
 import carpenterbee.WebElement
 import carpenterbee.construction.JavaScript.scriptReturn
 
-public class JQuerySequencer(public val wait: Wait = Wait()) : Sequencer {
+public class JQuery(public val wait: Wait = Wait()) : Sequencer {
     override fun preInteract(tag: WebElement) {}
 
     override fun postInteract(tag: WebElement) {

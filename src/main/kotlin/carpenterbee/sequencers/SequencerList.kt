@@ -12,6 +12,8 @@ public class SequencerList private constructor(
     public constructor(order: Stacking = Stacking.FIFO)
             : this(mutableListOf(), order)
 
+    public fun add(vararg sequencers: Sequencer): Boolean = addAll(sequencers)
+
     public fun sequence(tag: WebElement, interaction: WebElement.() -> Unit) {
         wrappedList.forEach { it.preInteract(tag) }
 

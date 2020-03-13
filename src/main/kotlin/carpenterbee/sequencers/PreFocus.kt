@@ -1,13 +1,12 @@
 // Library
 @file:Suppress("RedundantVisibilityModifier", "MemberVisibilityCanBePrivate", "unused")
 
-package carpenterbee.sequencers.focus
+package carpenterbee.sequencers
 
-import carpenterbee.sequencers.Sequencer
 import carpenterbee.WebElement
 import carpenterbee.construction.JavaScript.voidMember
 
-public object FocusSequencer : Sequencer {
+public object PreFocus : Sequencer {
     public override fun preInteract(tag: WebElement) {
         tag.voidMember("focus()")
     }
